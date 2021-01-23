@@ -32,6 +32,16 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 90,
+        lines: 90,
+        branches: 90,
+        functions: 90
+      }
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
