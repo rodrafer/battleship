@@ -41,7 +41,7 @@ yarn-error.log
 testem.log
 /typings
 initial-template.html
-package-lock.json
+lint-report.txt
 
 # System Files
 .DS_Store
