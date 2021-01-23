@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootswatch/dist/sketchy/variables";
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootswatch/dist/sketchy/bootswatch";
+
+body {
+    margin: 0px;
+}
