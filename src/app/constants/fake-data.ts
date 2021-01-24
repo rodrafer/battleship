@@ -1,6 +1,6 @@
 import { UserData } from "./interfaces";
 
-export const FAKE_DATA: UserData = {
+export const FAKE_DATA: UserData[] = [{
     uid: '12345',
     saved_games: [{
         name: 'Vuelta de obligado',
@@ -17,4 +17,4 @@ export const FAKE_DATA: UserData = {
         status: 'Lost'
     }],
     multiplayer_code: ''
-}
+}]
