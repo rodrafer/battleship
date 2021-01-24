@@ -1,13 +1,15 @@
 .main-title {
     position: relative;
-    margin-top: 50px;
+    margin-top: 25px;
+    margin-bottom: 0;
     text-align: center;
     color: white;
+    font-size: 75px;
 }
 
 .menu-container {
     position: relative;
-    margin-top: 75px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
