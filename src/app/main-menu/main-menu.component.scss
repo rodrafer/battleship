@@ -1,6 +1,25 @@
 .main-title {
     position: relative;
-    margin-top: 0.5em;
+    margin-top: 50px;
     text-align: center;
     color: white;
+}
+
+.menu-container {
+    position: relative;
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .wrapper {
+        margin: 15px 0;
+
+        .btn {
+            height: 50PX;
+            width: 175px;
+            font-size: 25px;
+        }
+    }
 }
