@@ -11,12 +11,12 @@ import { FinalResultsComponent } from './final-results/final-results.component';
 const routes: Routes = [
   {path: '', redirectTo: 'main-menu', pathMatch: 'full'},
   {path: 'main-menu', component: MainMenuComponent, pathMatch: 'full'},
-  {path: 'saved-games/:id', component: SavedGamesComponent},
+  {path: 'saved-games/:uid', component: SavedGamesComponent},
   {path: 'difficulty', component: DifficultyComponent},
-  {path: 'played-games/:id', component: PlayedGamesComponent},
-  {path: 'multiplayer/:id', component: MultiplayerComponent},
-  {path: 'game-board/:id', component: GameBoardComponent},
-  {path: 'final-results/:id', component: FinalResultsComponent},
+  {path: 'played-games/:uid', component: PlayedGamesComponent},
+  {path: 'multiplayer/:uid', component: MultiplayerComponent},
+  {path: 'game-board/:uid', component: GameBoardComponent},
+  {path: 'final-results/:uid', component: FinalResultsComponent},
 ];
 
 @NgModule({
