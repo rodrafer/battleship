@@ -21,16 +21,9 @@
 
 .console {
     position: relative;
-    height: 75vh;
-    width: 50vw;
+    height: 600px;
+    width: 800px;
     border: 1px solid white;
-
-    .main-title {
-        position: relative;
-        margin-top: 0.5em;
-        text-align: center;
-        color: white;
-    }
 }
 
 .console::before {
