@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'main-menu', pathMatch: 'full'},
   {path: 'main-menu', component: MainMenuComponent, pathMatch: 'full'},
   {path: 'saved-games/:uid', component: SavedGamesComponent},
-  {path: 'difficulty', component: DifficultyComponent},
+  {path: 'difficulty/:uid', component: DifficultyComponent},
   {path: 'played-games/:uid', component: PlayedGamesComponent},
   {path: 'multiplayer/:uid', component: MultiplayerComponent},
   {path: 'game-board/:uid', component: GameBoardComponent},

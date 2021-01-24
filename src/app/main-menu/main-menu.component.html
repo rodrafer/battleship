@@ -1,1 +1,12 @@
 <h1 id="app-title" class="main-title">{{title | uppercase}}</h1>
+
+<div id="menu-options" class="menu-container">
+    <div id="button-wrapper" class="wrapper" *ngFor="let option of options">
+        <a routerLink="{{option.link}}/{{user.uid}}" id="{{option.anchor_id}}" class="menu-button">
+            <button id="{{option.button_id}}" type="button" class="btn btn-primary">{{option.name}}</button>
+        </a>
+    </div>
+    <div id="button-wrapper" class="wrapper">
+        <button id="exit-button" type="button" class="btn btn-primary">Exit</button>
+    </div>
+</div>
