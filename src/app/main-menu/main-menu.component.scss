@@ -1,27 +1,32 @@
-.main-title {
-    position: relative;
-    margin-top: 25px;
-    margin-bottom: 0;
-    text-align: center;
-    color: white;
-    font-size: 75px;
-}
-
-.menu-container {
-    position: relative;
-    margin-top: 25px;
+.wrapper {
+    height: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
 
-    .wrapper {
-        margin: 15px 0;
+    .main-title {
+        position: relative;
+        margin-bottom: 0;
+        text-align: center;
+        color: white;
+        font-size: 75px;
+    }
 
-        .btn {
-            height: 50PX;
-            width: 175px;
-            font-size: 25px;
+    .menu-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .route-wrapper {
+            margin: 15px 0;
+
+            .btn {
+                height: 50PX;
+                width: 175px;
+                font-size: 25px;
+            }
         }
     }
 }
