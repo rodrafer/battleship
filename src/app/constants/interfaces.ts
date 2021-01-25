@@ -27,3 +27,12 @@ export interface MenuOptions {
     anchor_id: string;
     button_id: string;
 }
+
+export interface DifficultyOptions {
+    name: string;
+    buttonClass: string;
+    anchor_id: string;
+    button_id: string;
+    textClass: string;
+    description: string;
+}

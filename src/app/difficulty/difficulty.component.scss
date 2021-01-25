@@ -1,0 +1,55 @@
+.wrapper {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    #back-button {
+        position: relative;
+        bottom: 25px;
+        color: white;
+        border-color: white;
+        font-weight: bold;
+        margin-left: 25px;
+    }
+
+    .difficulty-title {
+        position: relative;
+        margin-bottom: 0;
+        text-align: center;
+        color: white;
+    }
+
+    .difficulty-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .route-wrapper {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .btn {
+                height: 50PX;
+                width: 175px;
+                font-size: 25px;
+            }
+
+            #button-description {
+                margin-top: 10px;
+                font-size: 17.5px;
+            }
+        }
+    }
+
+    .loading-message {
+        position: relative;
+        text-align: center;
+        color: white;
+        font-size: 75px;
+    }
+}
