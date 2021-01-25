@@ -8,7 +8,7 @@ import { FAKE_DATA, DIFFICULTY_OPTIONS } from '../constants/constants';
   styleUrls: ['./difficulty.component.scss']
 })
 export class DifficultyComponent implements OnInit {
-  difficultyTitle = "Choose a difficulty";
+  difficultyTitle = 'Choose a difficulty';
   isLoading = false;
   user: UserData;
   difficulties: DifficultyOptions[] = [];
