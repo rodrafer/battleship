@@ -8,7 +8,7 @@ import { FAKE_DATA, MENU_OPTIONS } from '../constants/constants';
   styleUrls: ['./main-menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-  title = 'battleship';
+  menuTitle = 'battleship';
   user: UserData;
   options: MenuOptions[] = [];
 
