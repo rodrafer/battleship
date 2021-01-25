@@ -1,4 +1,4 @@
-import { UserData, MenuOptions } from './interfaces';
+import { UserData, MenuOptions, DifficultyOptions } from './interfaces';
 
 export const MENU_OPTIONS: MenuOptions[] = [
     {
@@ -21,6 +21,31 @@ export const MENU_OPTIONS: MenuOptions[] = [
         link: '/multiplayer',
         anchor_id: 'multiplayer-button-anchor',
         button_id: 'multiplayer-button'
+    }
+];
+
+export const DIFFICULTY_OPTIONS: DifficultyOptions[] = [
+    {
+        name: 'Cadet',
+        buttonClass: 'btn-success',
+        anchor_id: 'easy-button-anchor',
+        button_id: 'easy-button',
+        textClass: 'text-success',
+        description: 'Easy. You\'ll get unlimited turns to sink the enemy fleet.',
+    }, {
+        name: 'Lieutenant',
+        buttonClass: 'btn-warning',
+        anchor_id: 'medium-button-anchor',
+        button_id: 'medium-button',
+        textClass: 'text-warning',
+        description: 'Medium. You\'ll get 100 turns to sink the enemy fleet.',
+    }, {
+        name: 'Almirant',
+        buttonClass: 'btn-danger',
+        anchor_id: 'hardcore-games-button-anchor',
+        button_id: 'hardcore-games-button',
+        textClass: 'text-danger',
+        description: 'Hardcore. You\'ll get 50 turns to sink the enemy fleet.',
     }
 ];
 
