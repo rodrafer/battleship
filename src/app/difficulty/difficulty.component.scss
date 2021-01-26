@@ -5,12 +5,13 @@
     justify-content: space-evenly;
 
     #back-button {
+        float: left;
         position: relative;
-        bottom: 25px;
         color: white;
         border-color: white;
         font-weight: bold;
         margin-left: 25px;
+        z-index: 10;
     }
 
     .difficulty-title {
@@ -18,6 +19,7 @@
         margin-bottom: 0;
         text-align: center;
         color: white;
+        right: 42px;
     }
 
     .difficulty-container {

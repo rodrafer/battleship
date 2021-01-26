@@ -1,1 +1,29 @@
-<p>game-board works!</p>
+<div id="component-wrapper" class="wrapper">
+
+    <div id="difficulty-header" class="header">
+        <a routerLink="/main-menu" id="back-route" class="back-button">
+            <button id="back-button" type="button" class="btn btn-outline-primary">BACK</button>
+        </a>
+        <h1 id="board-title" class="board-title" *ngIf="!isLoading">{{boardTitle | uppercase}}</h1>
+    </div>
+
+    <table class="table table-hover">
+        <thead id="head" class="table-head">
+            <tr id="header-row" class="table-row">
+                <th id="col-0" class="header-cell" scope="col"></th>
+                <th id="col-{{column}}" class="header-cell" scope="col" *ngFor="let column of columns">{{column}}</th>
+            </tr>
+            <tr id="left-col-{{row}}" class="left-col" *ngFor="let row of rows">
+                <th id="row-{{row}}" class="left-col-cell" scope="row">{{row}}</th>
+            </tr>
+        </thead>
+        <tbody id="board" class="table-body">
+            <tr id="row-{{row}}" class="table-row" *ngFor="let row of rows">
+                <td id="cell-{{row}}{{column}}"
+                    class="table-cell"
+                    *ngFor="let column of columns">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
