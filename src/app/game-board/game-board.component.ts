@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FleetDistributionService } from '../services/fleet-distribution.service';
 
 @Component({
   selector: 'app-game-board',
@@ -11,7 +12,7 @@ export class GameBoardComponent implements OnInit {
   columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 
-  constructor() { }
+  constructor(private fleetDistribution = FleetDistributionService) { }
 
   ngOnInit(): void {
   }
