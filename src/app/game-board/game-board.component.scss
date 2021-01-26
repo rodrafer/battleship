@@ -44,6 +44,11 @@
             vertical-align: middle;
             border: 1px solid white;
             background-color: rgba(255, 255, 255, 0);
+
+            p {
+                margin: 0;
+                visibility: hidden;
+            }
         }
         
         td:hover {

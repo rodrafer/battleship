@@ -19,9 +19,10 @@
         </thead>
         <tbody id="board" class="table-body">
             <tr id="row-{{row}}" class="table-row" *ngFor="let row of rows">
-                <td id="cell-{{row}}{{column}}"
+                <td id="{{row}}{{column}}"
                     class="table-cell"
                     *ngFor="let column of columns">
+                    <p></p>
                 </td>
             </tr>
         </tbody>
