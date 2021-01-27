@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FleetDistributionService } from '../services/fleet-distribution.service';
 import { Ship, BoardPoint } from '../constants/interfaces';
 
@@ -7,7 +7,7 @@ import { Ship, BoardPoint } from '../constants/interfaces';
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.scss']
 })
-export class GameBoardComponent implements OnInit, AfterViewInit {
+export class GameBoardComponent implements OnInit {
   boardTitle = 'battleship';
   isLoading = false;
   rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -36,10 +36,13 @@ export class GameBoardComponent implements OnInit, AfterViewInit {
     }
   ];
 
-  constructor(private fleetDistribution: FleetDistributionService) { }
+  constructor(
+    private fleetDistribution: FleetDistributionService,
+  ) { }
 
-  private isEqual = (first, second) => {
-    return JSON.stringify(first) === JSON.stringify(second);
+  ngOnInit(): void {
+    this.setShipPosition();
+    console.log(this.shipPositions);
   }
   
   private setShipPosition(): void {
@@ -50,26 +53,19 @@ export class GameBoardComponent implements OnInit, AfterViewInit {
       }
     })
   }
-
-  private showShipPositions(shipPositions) {
-    shipPositions.forEach(point => {
-      let shipPoint = document.getElementById(point.x + point.y);
-      shipPoint.firstElementChild.innerHTML = 'X';
-      let pointIndex = shipPositions.findIndex(sPoint => this.isEqual(sPoint, point));
-      (0 <= pointIndex && 3 >= pointIndex) ? shipPoint.style.color = 'red' :
-      (4 <= pointIndex && 9 >= pointIndex) ? shipPoint.style.color = 'white' :
-      (10 <= pointIndex && 15 >= pointIndex) ? shipPoint.style.color = 'blue' :
-      shipPoint.style.color = 'green';
-    })
-  }
-
-  ngOnInit(): void {
-    this.setShipPosition();
-    console.log(this.shipPositions);
-  }
-
-  ngAfterViewInit(): void {
-    this.showShipPositions(this.shipPositions);
-  }
-    
+ 
+  onCellClicked(cellId: string) {
+    let clickedCell = document.getElementById(cellId);
+    if (this.shipPositions.some(point => point.x === cellId[0] && point.y.toString() === cellId[1])) {
+      clickedCell.className = 'table-cell disable-hover';
+      let strikeShot = document.createElement('p');
+      strikeShot.innerHTML = 'X';
+      strikeShot.style.color = 'red';
+      strikeShot.style.margin = '0';
+      clickedCell.appendChild(strikeShot);
+    } else {
+      clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+      clickedCell.className = 'table-cell disable-hover';
+    }
+  }  
 }
