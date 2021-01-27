@@ -28,51 +28,86 @@
         }
     }
 
-    .table {
-        position: relative;
-        right: 20px;
-        height: 440px;
-        width: 440px;
-        margin-bottom: 0;
+    .game-container {
+        width: 800px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
 
-        td, th {
-            padding: 0;
-            height: 40px;
-            width: 40px;
+        .card {
+            position: relative;
             color: white;
-            text-align: center;
-            vertical-align: middle;
-            border: 1px solid white;
-            background-color: rgba(255, 255, 255, 0);
-        }
-        
-        .enable-hover:hover {
-            background-color: rgba(255, 255, 255, 0.5);
+
+            .card-body {
+                width: 160px;
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .card-title {
+                    margin-bottom: 5px;
+                }
+
+                span {
+                    width: 75px;
+                    border-top: 1px solid white;
+                }
+
+                .card-text {
+                    margin-top: 15px;
+                }
+            }
         }
 
-        .table-body {
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            //border: 3px solid white;
-            z-index: 10;
-        }
-
-        th {
-            border: 0px;
-        }
-
-        .header-cell {
-            width: 40px;
-        }
-
-        .table-row {
-            height: 40px;
+        .table {
+            position: relative;
+            right: 5px;
+            height: 440px;
             width: 440px;
-        }
-        
-        tr:hover {
-            background-color: rgba(255, 255, 255, 0);
+            margin-bottom: 0;
+    
+            td, th {
+                padding: 0;
+                height: 40px;
+                width: 40px;
+                color: white;
+                text-align: center;
+                vertical-align: middle;
+                border: 1px solid white;
+                background-color: rgba(255, 255, 255, 0);
+            }
+            
+            .table-cell:hover {
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+    
+            .table-body {
+                position: absolute;
+                top: 40px;
+                left: 40px;
+                //border: 3px solid white;
+                z-index: 10;
+            }
+    
+            th {
+                border: 0px;
+            }
+    
+            .header-cell {
+                width: 40px;
+            }
+    
+            .table-row {
+                height: 40px;
+                width: 440px;
+            }
+            
+            tr:hover {
+                background-color: rgba(255, 255, 255, 0);
+            }
         }
     }
 }

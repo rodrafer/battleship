@@ -7,27 +7,45 @@
         <h1 id="board-title" class="board-title" *ngIf="!isLoading">{{boardTitle | uppercase}}</h1>
     </div>
 
-    <div><p *ngIf="!(turnsLeft >= 100)">{{turnsLeft}}</p></div>
+    <div id="main-game" class="game-container">
+        <div id="turn-indicator" class="card text-white bg-primary mb-3">
+            <div class="card-body" [ngSwitch]="difficulty">
+                <h4 id="turns-left" class="card-title">Turns Left:</h4>
+                <span></span>
+                <h5 id="turns" class="card-text" *ngSwitchCase="'Cadet'">Unlimited</h5>
+                <h5 id="turns" class="card-text" *ngSwitchCase="'Lieutenant'">{{turnsLeft}}</h5>
+                <h5 id="turns" class="card-text" *ngSwitchCase="'Almirant'">{{turnsLeft}}</h5>
+            </div>
+        </div>
 
-    <table class="table table-hover">
-        <thead id="head" class="table-head">
-            <tr id="header-row" class="table-row">
-                <th id="col-0" class="header-cell" scope="col"></th>
-                <th id="col-{{column}}" class="header-cell" scope="col" *ngFor="let column of columns">{{column}}</th>
-            </tr>
-            <tr id="left-col-{{row}}" class="left-col" *ngFor="let row of rows">
-                <th id="row-{{row}}" class="left-col-cell" scope="row">{{row}}</th>
-            </tr>
-        </thead>
-        <tbody id="board" class="table-body">
-            <tr id="row-{{row}}" class="table-row" *ngFor="let row of rows">
-                <td #cell
-                    id="{{row}}{{column}}"
-                    class="table-cell enable-hover"
-                    *ngFor="let column of columns"
-                    (click)="onCellClicked(cell.id)">
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table table-hover">
+            <thead id="head" class="table-head">
+                <tr id="header-row" class="table-row">
+                    <th id="col-0" class="header-cell" scope="col"></th>
+                    <th id="col-{{column}}" class="header-cell" scope="col" *ngFor="let column of columns">{{column}}</th>
+                </tr>
+                <tr id="left-col-{{row}}" class="left-col" *ngFor="let row of rows">
+                    <th id="row-{{row}}" class="left-col-cell" scope="row">{{row}}</th>
+                </tr>
+            </thead>
+            <tbody id="board" class="table-body">
+                <tr id="row-{{row}}" class="table-row" *ngFor="let row of rows">
+                    <td #cell
+                        id="{{row}}{{column}}"
+                        class="table-cell"
+                        *ngFor="let column of columns"
+                        (click)="onCellClicked(cell.id)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="accuracy-indicator" class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h4 id="accuracy" class="card-title">Accuracy:</h4>
+                <span></span>
+                <h5 id="ratio" class="card-text">{{accuracy}}%</h5>
+            </div>
+        </div>
+    </div>
 </div>

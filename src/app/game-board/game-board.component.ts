@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FleetDistributionService } from '../services/fleet-distribution.service';
 import { Ship, BoardPoint } from '../constants/interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game-board',
@@ -10,6 +11,11 @@ import { Ship, BoardPoint } from '../constants/interfaces';
 export class GameBoardComponent implements OnInit {
   boardTitle = 'battleship';
   isLoading = false;
+  difficulty: string = 'Cadet';
+  turnsLeft: number = Infinity;
+  usedTurns: number = 0;
+  successfullTurns: number = 0;
+  accuracy: string = '0';
   rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   shipPositions: BoardPoint[] = [];
@@ -38,9 +44,19 @@ export class GameBoardComponent implements OnInit {
 
   constructor(
     private fleetDistribution: FleetDistributionService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.difficulty = this.route.snapshot.paramMap.get('difficulty');
+    switch (this.difficulty) {
+      case 'Lieutenant':
+        this.turnsLeft = 100;
+        break;
+      case 'Almirant':
+        this.turnsLeft = 50;
+        break;
+    }
     this.setShipPosition();
     console.log(this.shipPositions);
   }
@@ -56,16 +72,21 @@ export class GameBoardComponent implements OnInit {
  
   onCellClicked(cellId: string) {
     let clickedCell = document.getElementById(cellId);
-    if (this.shipPositions.some(point => point.x === cellId[0] && point.y.toString() === cellId[1])) {
-      clickedCell.className = 'table-cell disable-hover';
-      let strikeShot = document.createElement('p');
-      strikeShot.innerHTML = 'X';
-      strikeShot.style.color = 'red';
-      strikeShot.style.margin = '0';
-      clickedCell.appendChild(strikeShot);
-    } else {
-      clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-      clickedCell.className = 'table-cell disable-hover';
+    if (clickedCell.className === 'table-cell') {
+      if (this.shipPositions.some(point => point.x === cellId[0] && point.y.toString() === cellId[1])) {
+        clickedCell.className = 'table-cell-clicked';
+        let strikeShot = document.createElement('p');
+        strikeShot.innerHTML = 'X';
+        strikeShot.style.color = 'red';
+        strikeShot.style.margin = '0';
+        clickedCell.appendChild(strikeShot);
+        this.difficulty === 'Cadet' ? this.successfullTurns : ++this.successfullTurns;
+      } else {
+        clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        clickedCell.className = 'table-cell-clicked';
+      }
+      this.difficulty === 'Cadet' ? this.turnsLeft : --this.turnsLeft; ++this.usedTurns;
+      this.accuracy = ((this.successfullTurns/this.usedTurns)*100).toFixed(2);
     }
   }  
 }

@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'difficulty/:uid', component: DifficultyComponent},
   {path: 'played-games/:uid', component: PlayedGamesComponent},
   {path: 'multiplayer/:uid', component: MultiplayerComponent},
-  {path: 'game-board/:uid', component: GameBoardComponent},
+  {path: 'game-board/:difficulty/:uid', component: GameBoardComponent},
   {path: 'final-results/:uid', component: FinalResultsComponent},
 ];
 
