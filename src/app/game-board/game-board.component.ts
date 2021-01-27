@@ -16,6 +16,8 @@ export class GameBoardComponent implements OnInit {
   usedTurns: number = 0;
   successTurns: number = 0;
   accuracy: string = '0';
+  startTime: number;
+  endTime: number;
   rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   shipPositions: BoardPoint[] = [];
@@ -59,6 +61,7 @@ export class GameBoardComponent implements OnInit {
     }
     this.setShipPosition();
     console.log(this.shipPositions);
+    this.startTime = Date.now();
   }
   
   private setShipPosition(): void {

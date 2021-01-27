@@ -1,4 +1,32 @@
-<div [ngSwitch]="haveWon">
-    <h1 *ngSwitchCase="true">CONGRATULATIONS</h1>
-    <h1 *ngSwitchCase="false">GAME OVER</h1>
+<div id="component-wrapper" class="wrapper" [ngSwitch]="haveWon">
+    <div id="success-case" class="case-container" *ngSwitchCase="true">
+        <h1 id="title-success" class="title text-success">CONGRATULATIONS CAPTAIN</h1>
+        <h2 id="subtitle-success" class="subtitle text-success">You have won!</h2>
+    </div>
+    <div id="fail-case" class="case-container" *ngSwitchCase="false">
+        <h1 id="title-fail" class="title text-danger">LEAVE THE SHIP!</h1>
+        <h2 id="subtitle-fail" class="subtitle text-danger">The game is over</h2>
+    </div>
+
+    <div id="stats" class="stats-container">
+        <h3 id="table title" class="title">Battle Stats</h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Turns used</th>
+                <th scope="col">Accuracy</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-active">
+                <td>{{startTime | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
+                <td>{{endTime | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
+                <td>{{usedTurns}}</td>
+                <td>{{accuracy}}%</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
