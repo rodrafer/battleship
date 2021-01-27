@@ -7,8 +7,6 @@
         <h1 id="board-title" class="board-title" *ngIf="!isLoading">{{boardTitle | uppercase}}</h1>
     </div>
 
-    <div><p *ngIf="!(turnsLeft >= 100)">{{turnsLeft}}</p></div>
-
     <table class="table table-hover">
         <thead id="head" class="table-head">
             <tr id="header-row" class="table-row">
@@ -21,11 +19,10 @@
         </thead>
         <tbody id="board" class="table-body">
             <tr id="row-{{row}}" class="table-row" *ngFor="let row of rows">
-                <td #cell
-                    id="{{row}}{{column}}"
-                    class="table-cell enable-hover"
-                    *ngFor="let column of columns"
-                    (click)="onCellClicked(cell.id)">
+                <td id="{{row}}{{column}}"
+                    class="table-cell"
+                    *ngFor="let column of columns">
+                    <p></p>
                 </td>
             </tr>
         </tbody>
