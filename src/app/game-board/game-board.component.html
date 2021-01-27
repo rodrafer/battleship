@@ -1,5 +1,4 @@
-<div id="component-wrapper" class="wrapper">
-
+<div id="component-wrapper" class="wrapper" *ngIf="turnsLeft !== 0">
     <div id="difficulty-header" class="header-container">
         <a routerLink="/main-menu" id="back-route" class="back-button">
             <button id="back-button" type="button" class="btn btn-outline-primary">BACK</button>
@@ -54,4 +53,12 @@
             <button id="save" type="button" class="btn btn-info">SAVE GAME</button>
         </a>
     </div>
+</div>
+<div id="final-results" class="results-container">
+    <app-final-results *ngIf="turnsLeft === 0"
+                       id="results"
+                       class="results-component"
+                       [strikes]="successTurns"
+                       [strikesToWin]="shipPositions.length">
+    </app-final-results>
 </div>

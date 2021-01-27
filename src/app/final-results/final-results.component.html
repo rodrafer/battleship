@@ -1,1 +1,4 @@
-<p>final-results works!</p>
+<div [ngSwitch]="haveWon">
+    <h1 *ngSwitchCase="true">CONGRATULATIONS</h1>
+    <h1 *ngSwitchCase="false">GAME OVER</h1>
+</div>

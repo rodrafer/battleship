@@ -14,7 +14,7 @@ export class GameBoardComponent implements OnInit {
   difficulty: string = 'Cadet';
   turnsLeft: number = Infinity;
   usedTurns: number = 0;
-  successfullTurns: number = 0;
+  successTurns: number = 0;
   accuracy: string = '0';
   rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -80,13 +80,13 @@ export class GameBoardComponent implements OnInit {
         strikeShot.style.color = 'red';
         strikeShot.style.margin = '0';
         clickedCell.appendChild(strikeShot);
-        this.difficulty === 'Cadet' ? this.successfullTurns : ++this.successfullTurns;
+        this.difficulty === 'Cadet' ? this.successTurns : ++this.successTurns;
       } else {
         clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
         clickedCell.className = 'table-cell-clicked';
       }
       this.difficulty === 'Cadet' ? this.turnsLeft : --this.turnsLeft; ++this.usedTurns;
-      this.accuracy = ((this.successfullTurns/this.usedTurns)*100).toFixed(2);
+      this.accuracy = ((this.successTurns/this.usedTurns)*100).toFixed(2);
     }
   }  
 }
