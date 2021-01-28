@@ -10,6 +10,7 @@ import { PlayedGamesComponent } from './played-games/played-games.component';
 import { MultiplayerComponent } from './multiplayer/multiplayer.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import { FinalResultsComponent } from './final-results/final-results.component';
+import { FleetDistributionService } from './services/fleet-distribution.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { FinalResultsComponent } from './final-results/final-results.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [FleetDistributionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

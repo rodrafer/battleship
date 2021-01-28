@@ -36,3 +36,14 @@ export interface DifficultyOptions {
     textClass: string;
     description: string;
 }
+
+export interface Ship {
+    name: string;
+    length: number;
+    amount: number;
+}
+
+export interface BoardPoint {
+    x: string;
+    y: number;
+}

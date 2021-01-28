@@ -1,1 +1,112 @@
-<p>game-board works!</p>
+<div id="component-wrapper" class="wrapper" *ngIf="turnsLeft !== 0">
+    <div id="difficulty-header" class="header-container">
+        <a routerLink="/main-menu" id="back-route" class="back-button">
+            <button id="back-button" type="button" class="btn btn-outline-primary" (click)="onBackClicked()">BACK</button>
+        </a>
+        <h1 id="board-title" class="board-title" *ngIf="!isLoading">{{boardTitle | uppercase}}</h1>
+    </div>
+
+    <div id="enemy-badge" class="badge-container" *ngIf="isMultiplayer">
+        <span id="enemy" class="badge badge-pill badge-danger">Enemy user</span>
+    </div>
+
+    <div id="main-game" class="game-container">
+        <div id="multiplayer-ships-left" class="indicators-container" *ngIf="isMultiplayer">
+            <div id="enemy-fleet-indicator" class="card text-white bg-danger mb-3" >
+                <div id="enemy-ships-body" class="card-body">
+                    <h4 id="enemy-fleet" class="card-title">Enemy fleet</h4>
+                    <span></span>
+                    <h5 id="enemy-ships" class="card-text">10</h5>
+                </div>
+            </div>
+
+            <div id="my-fleet-indicator" class="card text-white bg-success mb-3">
+                <div id="my-ships-body" class="card-body">
+                    <h4 id="my-fleet" class="card-title">My fleet</h4>
+                    <span></span>
+                    <h5 id="my-ships" class="card-text">10</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div id="turn-indicator" class="card text-white bg-primary mb-3" *ngIf="!isMultiplayer">
+            <div id="turns-body" class="card-body" [ngSwitch]="difficulty">
+                <h4 id="turns-left" class="card-title">Turns Left:</h4>
+                <span></span>
+                <h5 id="turns-easy" class="card-text" *ngSwitchCase="'Cadet'">Unlimited</h5>
+                <h5 id="turns-medium" class="card-text" *ngSwitchCase="'Lieutenant'">{{turnsLeft}}</h5>
+                <h5 id="turns-hard" class="card-text" *ngSwitchCase="'Almirant'">{{turnsLeft}}</h5>
+            </div>
+        </div>
+
+        <table class="table table-hover">
+            <thead id="header" class="table-head">
+                <tr id="header-row" class="table-row">
+                    <th id="col-0" class="header-cell" scope="col"></th>
+                    <th id="col-{{column}}" class="header-cell" scope="col" *ngFor="let column of columns">{{column}}</th>
+                </tr>
+                <tr id="left-col-{{row}}" class="left-col" *ngFor="let row of rows">
+                    <th id="row-{{row}}" class="left-col-cell" scope="row">{{row}}</th>
+                </tr>
+            </thead>
+            <tbody id="board" class="table-body">
+                <tr id="row-{{row}}" class="table-row" *ngFor="let row of rows">
+                    <td #cell
+                        id="{{row}}{{column}}"
+                        class="table-cell"
+                        *ngFor="let column of columns"
+                        (click)="onCellClicked(cell.id)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="accuracy-indicator" class="card text-white bg-primary mb-3" *ngIf="!isMultiplayer">
+            <div id="accuracy-body" class="card-body">
+                <h4 id="accuracy" class="card-title">Accuracy:</h4>
+                <span></span>
+                <h5 id="ratio" class="card-text">{{accuracy}}%</h5>
+            </div>
+        </div>
+
+        <div id="multiplayer-accuracy" class="indicators-container" *ngIf="isMultiplayer">
+            <div id="enemy-accuracy-indicator" class="card text-white bg-danger mb-3" >
+                <div id="enemy-accuracy-body" class="card-body">
+                    <h4 id="turns-left" class="card-title">Enemy accuracy</h4>
+                    <span></span>
+                    <h5 id="turns" class="card-text">0%</h5>
+                </div>
+            </div>
+
+            <div id="my-accuracy-indicator" class="card text-white bg-success mb-3">
+                <div id="my-accuracy-body" class="card-body">
+                    <h4 id="turns-left" class="card-title">My accuracy</h4>
+                    <span></span>
+                    <h5 id="turns" class="card-text">{{accuracy}}%</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="my-badge" class="badge-container" *ngIf="isMultiplayer">
+        <span id="user" class="badge badge-pill badge-success">My user</span>
+    </div>
+
+    <div id="save-button" class="button-container" *ngIf="!isMultiplayer">
+        <a routerLink="/main-menu" id="save-route" class="save-button">
+            <button id="save" type="button" class="btn btn-info">SAVE GAME</button>
+        </a>
+    </div>
+</div>
+
+<div id="final-results" class="results-container">
+    <app-final-results *ngIf="turnsLeft === 0 || successTurns === shipPositions.length"
+                       id="results"
+                       class="results-component"
+                       [strikes]="successTurns"
+                       [strikesToWin]="shipPositions.length"
+                       [startTime]="startTime"
+                       [usedTurns]="usedTurns"
+                       [accuracy]="accuracy">
+    </app-final-results>
+</div>

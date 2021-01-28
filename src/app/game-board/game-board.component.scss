@@ -1,0 +1,128 @@
+.wrapper {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .header-container {
+        width: 800px;
+
+        #back-button {
+            float: left;
+            position: relative;
+            color: white;
+            border-color: white;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-left: 25px;
+            z-index: 1;
+        }
+        
+        .board-title {
+            width: auto;
+            position: relative;
+            margin-bottom: 0;
+            text-align: center;
+            color: white;
+            right: 42px;
+        }
+    }
+
+    .badge-container {
+        position: relative;
+    }
+
+    .game-container {
+        width: 800px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 15px;
+
+        .card {
+            position: relative;
+            color: white;
+
+            .card-body {
+                width: 160px;
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+
+                .card-title {
+                    margin-bottom: 5px;
+                }
+
+                span {
+                    width: 75px;
+                    border-top: 1px solid white;
+                }
+
+                .card-text {
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        .table {
+            position: relative;
+            right: 5px;
+            height: 440px;
+            width: 440px;
+            margin-bottom: 0;
+    
+            td, th {
+                padding: 0;
+                height: 40px;
+                width: 40px;
+                color: white;
+                text-align: center;
+                vertical-align: middle;
+                border: 1px solid white;
+                background-color: rgba(255, 255, 255, 0);
+            }
+            
+            .table-cell:hover {
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+    
+            .table-body {
+                position: absolute;
+                top: 40px;
+                left: 40px;
+                //border: 3px solid white;
+            }
+    
+            th {
+                border: 0px;
+            }
+    
+            .header-cell {
+                width: 40px;
+            }
+    
+            .table-row {
+                height: 40px;
+                width: 440px;
+            }
+            
+            tr:hover {
+                background-color: rgba(255, 255, 255, 0);
+            }
+        }
+    }
+
+    .button-container {
+        position: relative;
+
+        .btn {
+            width: 200px;
+            font-size: 20px;
+        }
+    }
+}

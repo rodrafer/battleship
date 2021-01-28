@@ -1,0 +1,51 @@
+.wrapper {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .case-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 25px;
+
+        .title {
+            position: relative;
+            font-weight: bold;
+        }
+    
+        .subtitle {
+            position: relative;
+        }
+    }
+
+    .stats-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .title {
+            position: relative;
+            color: white;
+        }
+    
+        .table {
+            position: relative;
+            width: 600px;
+            text-align: center;
+            vertical-align: middle;
+        }
+    }
+
+    #back-button {
+        position: relative;
+        color: white;
+        border-color: white;
+        font-weight: bold;
+        margin-top: 25px;
+    }
+}
