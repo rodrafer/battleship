@@ -9,11 +9,11 @@ export class AppComponent {
   title = 'battleship';
   userHasLeft: boolean;
 
-  onBackClicked() {
+  onBackClicked(): void {
     this.userHasLeft = false;
   }
 
-  handleComponent(userLeft: boolean) {
+  handleComponent(userLeft: boolean): void {
     console.log(userLeft);
     userLeft ? this.userHasLeft = true : this.userHasLeft = false;
   }

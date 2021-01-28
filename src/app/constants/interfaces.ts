@@ -44,6 +44,6 @@ export interface Ship {
 }
 
 export interface BoardPoint {
-    x: string,
-    y: number
+    x: string;
+    y: number;
 }
