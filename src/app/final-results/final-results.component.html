@@ -10,23 +10,29 @@
 
     <div id="stats" class="stats-container">
         <h3 id="table title" class="title">Battle Stats</h3>
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Start Time</th>
-                <th scope="col">End Time</th>
-                <th scope="col">Turns used</th>
-                <th scope="col">Accuracy</th>
-            </tr>
+        <table id="stats-table" class="table table-hover">
+            <thead id="stats-header" class="table-head">
+                <tr id="labels-row" class="table-row">
+                    <th id="start-label" class="label" scope="col">Start Time</th>
+                    <th id="end-label" class="label" scope="col">End Time</th>
+                    <th id="turns-label" class="label" scope="col">Turns used</th>
+                    <th id="accuracy-label" class="label" scope="col">Accuracy</th>
+                </tr>
             </thead>
-            <tbody>
-            <tr class="table-active">
-                <td>{{startTime | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
-                <td>{{endTime | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
-                <td>{{usedTurns}}</td>
-                <td>{{accuracy}}%</td>
-            </tr>
+            <tbody id="stats-body" class="table-body">
+                <tr id="values-row" class="table-active">
+                    <td id="start" class="value">{{startTime | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
+                    <td id="end" class="value">{{endTime | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
+                    <td id="turns" class="value">{{usedTurns}}</td>
+                    <td id="accuracy" class="value">{{accuracy}}%</td>
+                </tr>
             </tbody>
         </table>
+    </div>
+
+    <div id="back-button-wrapper" class="button-container">
+        <a routerLink="/main-menu" id="results-back-route" class="back-button">
+            <button id="results-back-button" type="button" class="btn btn-outline-primary">BACK TO MENU</button>
+        </a>
     </div>
 </div>

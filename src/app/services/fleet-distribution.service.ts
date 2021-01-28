@@ -253,4 +253,8 @@ export class FleetDistributionService {
     console.log(this.forbiddenPoints)
     return shipPosition;
   };
+
+  public resetForbiddenPoints() {
+    this.forbiddenPoints = [];
+  };
 }

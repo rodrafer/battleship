@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'battleship';
+  userHasLeft: boolean;
+
+  onBackClicked() {
+    this.userHasLeft = false;
+  }
+
+  handleComponent(userLeft: boolean) {
+    console.log(userLeft);
+    userLeft ? this.userHasLeft = true : this.userHasLeft = false;
+  }
 }

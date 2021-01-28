@@ -7,7 +7,6 @@
 
     .header-container {
         width: 800px;
-        margin-top: 15px;
 
         #back-button {
             float: left;
@@ -15,8 +14,9 @@
             color: white;
             border-color: white;
             font-weight: bold;
+            margin-top: 5px;
             margin-left: 25px;
-            z-index: 10;
+            z-index: 1;
         }
         
         .board-title {
@@ -29,12 +29,17 @@
         }
     }
 
+    .badge-container {
+        position: relative;
+    }
+
     .game-container {
         width: 800px;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
+        margin-bottom: 15px;
 
         .card {
             position: relative;
@@ -47,6 +52,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                text-align: center;
 
                 .card-title {
                     margin-bottom: 5px;
@@ -58,7 +64,7 @@
                 }
 
                 .card-text {
-                    margin-top: 15px;
+                    margin-top: 10px;
                 }
             }
         }
@@ -90,7 +96,6 @@
                 top: 40px;
                 left: 40px;
                 //border: 3px solid white;
-                z-index: 10;
             }
     
             th {
@@ -114,8 +119,6 @@
 
     .button-container {
         position: relative;
-        margin-top: 20px;
-        margin-bottom: 10px;
 
         .btn {
             width: 200px;

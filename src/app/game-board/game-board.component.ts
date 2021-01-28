@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FleetDistributionService } from '../services/fleet-distribution.service';
 import { Ship, BoardPoint } from '../constants/interfaces';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class GameBoardComponent implements OnInit {
   boardTitle = 'battleship';
   isLoading = false;
-  difficulty: string = 'Cadet';
+  isMultiplayer = false;
+  userHasLeft: boolean;
+  difficulty: string;
   turnsLeft: number = Infinity;
   usedTurns: number = 0;
   successTurns: number = 0;
@@ -43,6 +45,7 @@ export class GameBoardComponent implements OnInit {
       amount: 4
     }
   ];
+  @Output() userLeft = new EventEmitter<boolean>();
 
   constructor(
     private fleetDistribution: FleetDistributionService,
@@ -59,12 +62,12 @@ export class GameBoardComponent implements OnInit {
         this.turnsLeft = 50;
         break;
     }
-    this.setShipPosition();
+    this.setFleetPosition();
     console.log(this.shipPositions);
     this.startTime = Date.now();
   }
   
-  private setShipPosition(): void {
+  private setFleetPosition(): void {
     this.fleet.forEach(ship => {
       for (let i = 1; i <= ship.amount; i++) {
         let shipPosition: BoardPoint[] = this.fleetDistribution.getShipPosition(ship);
@@ -91,5 +94,11 @@ export class GameBoardComponent implements OnInit {
       this.difficulty === 'Cadet' ? this.turnsLeft : --this.turnsLeft; ++this.usedTurns;
       this.accuracy = ((this.successTurns/this.usedTurns)*100).toFixed(2);
     }
-  }  
+  }
+
+  onBackClicked() {
+    this.fleetDistribution.resetForbiddenPoints();
+    this.userHasLeft = true;
+    this.userLeft.emit(this.userHasLeft);
+  }
 }
