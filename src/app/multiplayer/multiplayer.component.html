@@ -1,1 +1,77 @@
-<p>multiplayer works!</p>
+<div id="multiplayer-wrapper" class="wrapper">
+    <div id="multiplayer-header" class="header-container">
+        <a routerLink="/main-menu" id="back-route" class="back-button">
+            <button id="back-button" type="button" class="btn btn-outline-primary">BACK</button>
+        </a>
+        <h1 id="multiplayer-title" class="title">MULTIPLAYER</h1>
+    </div>
+
+    <div id="enter-code-wrapper" class="enter-code-container">
+        <div id="enter-code-form" class="form-group">
+            <label id="enter-code-label"
+                   class="col-form-label col-form-label-lg"
+                   for="inputLarge">
+                Have a code? Enter the code below:
+            </label>
+            <input #enterCode
+                   id="enter-code-input"
+                   class="form-control form-control-lg"
+                   type="text"
+                   placeholder="Room Code"
+                   id="inputLarge"
+                   minlength="8"
+                   maxlength="8"
+                   style="text-align: center; text-transform: uppercase;"
+                   [(ngModel)]="roomCode"
+                   [disabled]="isInputDisabled"
+                   (keypress)="onInputKeypress(enterCode.value)">
+        </div>
+    </div>
+
+    <div id="generate-code-wrapper" class="generate-code-container">
+        <div id="generate-code-form" class="form-group">
+            <label id="generate-code-label"
+                   class="col-form-label col-form-label-lg"
+                   for="generate-code-button">
+                Don't have a code? Generate one below:
+            </label>
+            <button id="generate-code-button"
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="onGenerateCodeClicked()">
+                Generate Code
+            </button>
+        </div>
+
+        <div id="generated-code-form" class="form-group" *ngIf="codeGenerated">
+            <label id="generated-code-label" class="control-label">Your Room Code:</label>
+            <div id="generated-code-container" class="form-group">
+                <div id="generated-code-box" class="input-group mb-3">
+                    <input id="generated-code-input"
+                           type="text"
+                           class="form-control"
+                           style="text-align: center; text-transform: uppercase;"
+                           [(ngModel)]="roomCode"
+                           readonly="">
+                    <div id="copy-code-box" class="input-group-append">
+                        <button id="copy-code"
+                                type="button"
+                                class="input-group-text"
+                                (click)="onCopyClicked()">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="join-room" class="button-container">
+        <button id="enter-room-button"
+                type="button"
+                class="btn btn-success"
+                *ngIf="joinButtonVisible"
+                (click)="onJoinRoomClicked()"
+                [disabled]="joinButtonDisabled">
+            Join Room
+        </button>
+    </div>
+</div>
