@@ -20,7 +20,7 @@ export class MultiplayerComponent implements OnInit {
   }
 
   onInputKeypress(inputValue: string): void {
-    let input = document.getElementsByClassName('form-control-lg');
+    const input = document.getElementsByClassName('form-control-lg');
     if (inputValue.length === 8) {
       input.item(0).classList.remove('is-invalid');
       input.item(0).classList.add('is-valid');
@@ -37,18 +37,18 @@ export class MultiplayerComponent implements OnInit {
   }
 
   onCopyClicked(): void {
-    let copyText = document.getElementById("generated-code-input") as HTMLInputElement;
+    const copyText = document.getElementById('generated-code-input') as HTMLInputElement;
     copyText.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
   }
 
   onJoinRoomClicked(): void {
     this.joinButtonDisabled = true;
-    let joinButton = document.getElementById('enter-room-button');
+    const joinButton = document.getElementById('enter-room-button');
     joinButton.textContent = 'Waiting the enemy to join...';
     joinButton.style.width = 'auto';
     setTimeout(() => {
-      this.router.navigate(['game-board/Multiplayer/12345'])
+      this.router.navigate(['game-board/Multiplayer/12345']);
     }, 5000);
   }
 }
