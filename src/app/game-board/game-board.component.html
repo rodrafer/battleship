@@ -1,4 +1,4 @@
-<div id="component-wrapper" class="wrapper" *ngIf="turnsLeft !== 0 && numberOfStrikes !== shipPositions.length">
+<div id="game-wrapper" class="wrapper" *ngIf="turnsLeft !== 0 && numberOfStrikes !== shipPositions.length">
     <div id="difficulty-header" class="header-container">
         <a routerLink="/main-menu" id="back-route" class="back-button">
             <button id="back-button" type="button" class="btn btn-outline-primary" (click)="onBackClicked()">BACK</button>
@@ -92,7 +92,7 @@
         <span id="user" class="badge badge-pill badge-success">My user</span>
     </div>
 
-    <div id="save-button" class="button-container">
+    <div id="save-button" class="button-container" *ngIf="!isMultiplayer">
         <a routerLink="/main-menu" id="save-route" class="save-game">
             <button id="save-button" type="button" class="btn btn-secondary" (click)="onSaveClicked()">SAVE GAME</button>
         </a>

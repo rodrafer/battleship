@@ -260,6 +260,4 @@ export class FleetDistributionService {
     this.forbiddenPoints = [];
     console.log(this.forbiddenPoints);
   }
-
-
 }

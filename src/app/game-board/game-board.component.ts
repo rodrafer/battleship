@@ -51,6 +51,9 @@ export class GameBoardComponent implements OnInit {
       case 'Almirant':
         this.turnsLeft = 50;
         break;
+      case 'Multiplayer':
+        this.isMultiplayer = true;
+        break;
     }
     if (this.isLoadedGame) {
       this.startTime = this.loadedGameData.startTime;
