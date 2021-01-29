@@ -35,7 +35,7 @@ export class FinalResultsComponent implements OnInit {
     this.haveWon ? this.finalStatus = 'Won' : this.finalStatus = 'Lost';
   }
 
-  onBackToMenuClicked() {
+  onBackToMenuClicked(): void {
     const gameToRegister = {
       gid: this.gid,
       startTime: this.startTime,
@@ -44,7 +44,7 @@ export class FinalResultsComponent implements OnInit {
       accuracy: this.accuracy,
       status: this.finalStatus,
       difficulty: this.difficulty,
-    }
+    };
     this.userData.playedGames.push(gameToRegister);
     this.fleetDistributionService.resetForbiddenPoints();
   }

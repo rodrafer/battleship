@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FleetDistributionService } from '../services/fleet-distribution.service';
 import { Ship, BoardPoint, UserData, SavedGameData } from '../constants/interfaces';
-import { FAKE_DATA, FLEET } from '../constants/constants'
+import { FAKE_DATA, FLEET } from '../constants/constants';
 import { ActivatedRoute } from '@angular/router';
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-game-board',
@@ -75,7 +75,7 @@ export class GameBoardComponent implements OnInit {
 
   onCellClicked(cellId: string): void {
     this.clickedCellIds.push(cellId);
-    let xCoord = cellId[0];
+    const xCoord = cellId[0];
     let yCoord;
     if (cellId.length === 3) {
       yCoord = cellId[1] + cellId[2];
@@ -85,7 +85,7 @@ export class GameBoardComponent implements OnInit {
     const clickedCell = document.getElementById(cellId);
     if (clickedCell.className === 'table-cell') {
       if (
-        this.shipPositions.some(point => point.x == xCoord && point.y.toString() == yCoord)
+        this.shipPositions.some(point => point.x === xCoord && point.y.toString() === yCoord)
       ) {
         clickedCell.className = 'table-cell-clicked';
         const strikeShot = document.createElement('p');
@@ -109,7 +109,7 @@ export class GameBoardComponent implements OnInit {
     this.userHasLeft = true;
   }
 
-  onSaveClicked() {
+  onSaveClicked(): void {
     const gameToSave = {
       gid: this.gid,
       startTime: this.startTime,
@@ -120,7 +120,7 @@ export class GameBoardComponent implements OnInit {
       difficulty: this.difficulty,
       shipPositions: this.shipPositions,
       clickedCellIds: this.clickedCellIds
-    }
+    };
     if (this.isLoadedGame) {
       const loadedGameIndex = this.userSavedGames.findIndex(game => game.gid === gameToSave.gid);
       this.userSavedGames[loadedGameIndex] = {...this.userSavedGames[loadedGameIndex], ...gameToSave};
