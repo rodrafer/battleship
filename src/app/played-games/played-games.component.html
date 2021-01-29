@@ -1,1 +1,67 @@
-<p>played-games works!</p>
+<div id="component-wrapper" class="wrapper" [ngSwitch]="typeOfGame">
+    <div id="games-header" class="header-container" *ngIf="!isLoading">
+        <a routerLink="/main-menu" id="back-route" class="back-button">
+            <button id="back-button" type="button" class="btn btn-outline-primary">BACK</button>
+        </a>
+        <h1 id="title-fail" class="title" *ngSwitchCase="'played'">PLAYED GAMES</h1>
+        <h1 id="title-success" class="title" *ngSwitchCase="'saved'">SAVED GAMES</h1>
+    </div>
+
+    <div id="stats" class="stats-container" [ngClass]="typeOfGame === 'played' ? 'played-container' : 'saved-container'" *ngIf="!isLoading">
+        <table id="stats-table" class="table table-hover" [ngClass]="typeOfGame === 'played' ? 'played' : 'saved'">
+            <thead id="played-header" class="table-head" *ngSwitchCase="'played'">
+                <tr id="labels-played" class="table-row">
+                    <th id="start-played" class="label" scope="col">Start Time</th>
+                    <th id="end-played" class="label" scope="col">End Time</th>
+                    <th id="turns-played" class="label" scope="col">Turns used</th>
+                    <th id="accuracy-played" class="label" scope="col">Accuracy</th>
+                    <th id="status-played" class="label" scope="col">Result</th>
+                    <th id="difficulty-played" class="label" scope="col">Difficulty</th>
+                </tr>
+            </thead>
+            <thead id="saved-header" class="table-head" *ngSwitchCase="'saved'">
+                <tr id="labels-saved" class="table-row">
+                    <th id="radio-saved" class="label" scope="col"></th>
+                    <th id="start-saved" class="label" scope="col">Start Time</th>
+                    <th id="turns-saved" class="label" scope="col">Turns left</th>
+                    <th id="accuracy-saved" class="label" scope="col">Accuracy</th>
+                    <th id="difficulty-saved" class="label" scope="col">Difficulty</th>
+                </tr>
+            </thead>
+            <tbody id="played-body" class="table-body" *ngSwitchCase="'played'">
+                <tr id="values-played" class="table-active" *ngFor="let game of gamesToDisplay">
+                    <td id="start-played" class="value">{{game.startTime | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
+                    <td id="end-played" class="value">{{game.endTime | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
+                    <td id="turns-played" class="value">{{game.usedTurns}}</td>
+                    <td id="accuracy-played" class="value">{{game.accuracy}}%</td>
+                    <td id="status-played" class="value">{{game.status}}</td>
+                    <td id="difficulty-played" class="value">{{game.difficulty}}</td>
+                </tr>
+            </tbody>
+            <tbody id="saved-body" class="table-body" *ngSwitchCase="'saved'">
+                <tr id="values-saved-{{game.gid}}"
+                    class="table-active"
+                    *ngFor="let game of gamesToDisplay">
+                    <td id="radio-saved" class="value">
+                        <input type="radio"
+                               class="form-check-input"
+                               name="optionsRadios"
+                               id="optionsRadios{{game.gid}}"
+                               value="option{{game.gid}}"
+                               (click)="onOptionClicked(game.difficulty)">
+                    </td>
+                    <td id="start-saved" class="value">
+                        {{game.start_time | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}
+                    </td>
+                    <td id="turns-saved" class="value">{{game.turns_left}}</td>
+                    <td id="accuracy-saved" class="value">{{game.accuracy}}%</td>
+                    <td id="difficulty-saved" class="value">{{game.difficulty}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a routerLink="/game-board/{{gameDifficulty}}/{{userData.uid}}" id="load-route" class="load-game" *ngSwitchCase="'saved'">
+        <button type="button" id="load-button" class="btn btn-secondary load" [disabled]="isLoadDisabled">LOAD GAME</button>
+    </a>
+</div>
