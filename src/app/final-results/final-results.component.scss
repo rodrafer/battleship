@@ -41,11 +41,14 @@
         }
     }
 
-    #back-button {
+    .button-container {
         position: relative;
-        color: white;
-        border-color: white;
-        font-weight: bold;
-        margin-top: 25px;
+        
+            #results-back-button {
+                position: relative;
+                color: white;
+                border-color: white;
+                margin-top: 25px;
+            }
     }
 }

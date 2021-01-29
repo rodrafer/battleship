@@ -1,26 +1,26 @@
-import { UserData, MenuOptions, DifficultyOptions } from './interfaces';
+import { UserData, MenuOptions, DifficultyOptions, Ship } from './interfaces';
 
 export const MENU_OPTIONS: MenuOptions[] = [
     {
         name: 'Play',
         link: '/difficulty',
-        anchor_id: 'play-button-anchor',
-        button_id: 'play-button'
+        anchorId: 'play-button-anchor',
+        buttonId: 'play-button'
     }, {
         name: 'Load Game',
-        link: '/saved-games',
-        anchor_id: 'load-button-anchor',
-        button_id: 'load-button'
+        link: '/saved-games/saved',
+        anchorId: 'load-button-anchor',
+        buttonId: 'load-button'
     }, {
         name: 'Played Games',
-        link: '/played-games',
-        anchor_id: 'played-games-button-anchor',
-        button_id: 'played-games-button'
+        link: '/played-games/played',
+        anchorId: 'played-games-button-anchor',
+        buttonId: 'played-games-button'
     }, {
         name: 'Multiplayer',
         link: '/multiplayer',
-        anchor_id: 'multiplayer-button-anchor',
-        button_id: 'multiplayer-button'
+        anchorId: 'multiplayer-button-anchor',
+        buttonId: 'multiplayer-button'
     }
 ];
 
@@ -28,42 +28,130 @@ export const DIFFICULTY_OPTIONS: DifficultyOptions[] = [
     {
         name: 'Cadet',
         buttonClass: 'btn-success',
-        anchor_id: 'easy-button-anchor',
-        button_id: 'easy-button',
+        anchorId: 'easy-button-anchor',
+        buttonId: 'easy-button',
         textClass: 'text-success',
         description: 'Easy. You\'ll get unlimited turns to sink the enemy fleet.',
     }, {
         name: 'Lieutenant',
         buttonClass: 'btn-warning',
-        anchor_id: 'medium-button-anchor',
-        button_id: 'medium-button',
+        anchorId: 'medium-button-anchor',
+        buttonId: 'medium-button',
         textClass: 'text-warning',
         description: 'Medium. You\'ll get 100 turns to sink the enemy fleet.',
     }, {
         name: 'Almirant',
         buttonClass: 'btn-danger',
-        anchor_id: 'hardcore-games-button-anchor',
-        button_id: 'hardcore-games-button',
+        anchorId: 'hardcore-games-button-anchor',
+        buttonId: 'hardcore-games-button',
         textClass: 'text-danger',
         description: 'Hardcore. You\'ll get 50 turns to sink the enemy fleet.',
     }
 ];
 
+export const FLEET: Ship[] = [
+    {
+      name: 'carrier',
+      length: 4,
+      amount: 1
+    },
+    {
+      name: 'destroyer',
+      length: 3,
+      amount: 2
+    },
+    {
+      name: 'submarine',
+      length: 2,
+      amount: 3
+    },
+    {
+      name: 'patrol-boat',
+      length: 1,
+      amount: 4
+    }
+  ];
+
 export const FAKE_DATA: UserData[] = [{
     uid: '12345',
-    saved_games: [{
-        name: 'Vuelta de obligado',
-        start_time: '11-20-1845 18:02',
-        turns_left: 35,
-        accuracy: 0.75
+    savedGames: [{
+        gid: 1,
+        startTime: 654615341651,
+        turnsLeft: 35,
+        usedTurns: 25,
+        numberOfStrikes: 10,
+        accuracy: '75',
+        difficulty: 'Cadet',
+        shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
+        clickedCellIds: ['C10', 'E8', 'F7', 'D9']
+    }, {
+        gid: 2,
+        startTime: 654615341651,
+        turnsLeft: 35,
+        usedTurns: 15,
+        numberOfStrikes: 10,
+        accuracy: '75',
+        difficulty: 'Almirant',
+        shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
+        clickedCellIds: ['C10', 'E8', 'F7', 'D9']
     }],
-    played_games: [{
-        name: 'Batalla de Trafalgar',
-        start_time: '10-21-1805 09:00',
-        end_time: '10-22-1805 17:00',
-        turns_used: 25,
-        accuracy: 0.66,
-        status: 'Lost'
+    playedGames: [{
+        gid: 1,
+        startTime: 10684684026824,
+        endTime: 10684704027564,
+        usedTurns: 25,
+        accuracy: '66',
+        status: 'Lost',
+        difficulty: 'Cadet'
+    }, {
+        gid: 2,
+        startTime: 10684684026824,
+        endTime: 10684704027564,
+        usedTurns: 25,
+        accuracy: '66',
+        status: 'Lost',
+        difficulty: 'Cadet'
     }],
-    multiplayer_code: ''
+    multiplayerCode: ''
+}, {
+    uid: '67890',
+    savedGames: [{
+        gid: 1,
+        startTime: 654615341651,
+        turnsLeft: 35,
+        usedTurns: 25,
+        numberOfStrikes: 10,
+        accuracy: '75',
+        difficulty: 'Cadet',
+        shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
+        clickedCellIds: ['C10', 'E8', 'F7', 'D9']
+    }, {
+        gid: 2,
+        startTime: 654615341651,
+        turnsLeft: 35,
+        usedTurns: 15,
+        numberOfStrikes: 10,
+        accuracy: '75',
+        difficulty: 'Almirant',
+        shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
+        clickedCellIds: ['C10', 'E8', 'F7', 'D9']
+    }],
+    playedGames: [{
+        gid: 1,
+        startTime: 10684684026824,
+        endTime: 10684704027564,
+        usedTurns: 25,
+        accuracy: '66',
+        status: 'Lost',
+        difficulty: 'Cadet'
+    }, {
+        gid: 2,
+        startTime: 10684684026824,
+        endTime: 10684704027564,
+        usedTurns: 25,
+        accuracy: '66',
+        status: 'Lost',
+        difficulty: 'Cadet'
+    }],
+    multiplayerCode: ''
 }];

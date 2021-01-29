@@ -1,38 +1,44 @@
 export interface SavedGameData {
-    name: string;
-    start_time: string;
-    turns_left: number;
-    accuracy: number;
+    gid: number;
+    startTime: number;
+    turnsLeft: number;
+    usedTurns: number;
+    numberOfStrikes: number;
+    accuracy: string;
+    difficulty: string;
+    shipPositions: BoardPoint[];
+    clickedCellIds: string[];
 }
 
 export interface PlayedGameData {
-    name: string;
-    start_time: string;
-    end_time: string;
-    turns_used: number;
-    accuracy: number;
+    gid: number;
+    startTime: number;
+    endTime: number;
+    usedTurns: number;
+    accuracy: string;
     status: string;
+    difficulty: string;
 }
 
 export interface UserData {
     uid: string;
-    saved_games: SavedGameData[];
-    played_games: PlayedGameData[];
-    multiplayer_code: string;
+    savedGames: SavedGameData[];
+    playedGames: PlayedGameData[];
+    multiplayerCode: string;
 }
 
 export interface MenuOptions {
     name: string;
     link: string;
-    anchor_id: string;
-    button_id: string;
+    anchorId: string;
+    buttonId: string;
 }
 
 export interface DifficultyOptions {
     name: string;
     buttonClass: string;
-    anchor_id: string;
-    button_id: string;
+    anchorId: string;
+    buttonId: string;
     textClass: string;
     description: string;
 }

@@ -256,7 +256,9 @@ export class FleetDistributionService {
   }
 
   public resetForbiddenPoints(): void {
+    console.log(this.forbiddenPoints);
     this.forbiddenPoints = [];
+    console.log(this.forbiddenPoints);
   }
 
 

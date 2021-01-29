@@ -1,0 +1,76 @@
+.wrapper {
+    position: relative;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .header-container {
+        width: 800px;
+        margin: 50px;
+
+        #back-button {
+            position: relative;
+            float: left;
+            color: white;
+            border-color: white;
+            font-weight: bold;
+            margin-left: 25px;
+            z-index: 1;
+        }
+
+        .title {
+            position: relative;
+            color: white;
+            margin-bottom: 0;
+            text-align: center;
+            right: 42px;
+        }
+    }
+
+    .stats-container {
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .table {
+            position: relative;
+            margin-bottom: 0;
+            text-align: center;
+            vertical-align: middle;
+            align-content: center;
+
+            #radio-saved {
+                padding-left: 20px;
+                padding-right: 0;
+            }
+            .form-check-input {
+                margin-left: 20px;
+            }
+        }
+        
+        .played {
+            width: 700px;
+        }
+
+        .saved {
+            width: 500px;
+        }
+    }
+
+    .played-container {
+        width: 700px;
+        height: 425px;
+    }
+
+    .saved-container {
+        width: 500px;
+        height: 350px;
+    }
+
+    #load-button {
+        width: 200px;
+        font-size: 20px;
+        margin-top: 25px;
+    }
+}
