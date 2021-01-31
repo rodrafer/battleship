@@ -22,7 +22,7 @@ export const FAKE_DATA = [{
         clickedCellIds: ['C10', 'E8', 'F7', 'D9']
     }],
     playedGames: [{
-        gid: 1,
+        gid: 5,
         startTime: 10684684026824,
         endTime: 10684704027564,
         usedTurns: 25,
@@ -30,7 +30,7 @@ export const FAKE_DATA = [{
         status: 'Lost',
         difficulty: 'Cadet'
     }, {
-        gid: 2,
+        gid: 6,
         startTime: 10684684026824,
         endTime: 10684704027564,
         usedTurns: 25,
@@ -42,7 +42,7 @@ export const FAKE_DATA = [{
 }, {
     uid: '67890',
     savedGames: [{
-        gid: 1,
+        gid: 3,
         startTime: 654615341651,
         turnsLeft: 35,
         usedTurns: 25,
@@ -52,7 +52,7 @@ export const FAKE_DATA = [{
         shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
         clickedCellIds: ['C10', 'E8', 'F7', 'D9']
     }, {
-        gid: 2,
+        gid: 4,
         startTime: 654615341651,
         turnsLeft: 35,
         usedTurns: 15,
@@ -63,7 +63,7 @@ export const FAKE_DATA = [{
         clickedCellIds: ['C10', 'E8', 'F7', 'D9']
     }],
     playedGames: [{
-        gid: 1,
+        gid: 7,
         startTime: 10684684026824,
         endTime: 10684704027564,
         usedTurns: 25,
@@ -71,7 +71,7 @@ export const FAKE_DATA = [{
         status: 'Lost',
         difficulty: 'Cadet'
     }, {
-        gid: 2,
+        gid: 8,
         startTime: 10684684026824,
         endTime: 10684704027564,
         usedTurns: 25,
