@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FAKE_DATA } from '../constants/constants';
-import { UserData } from '../constants/interfaces';
+import { PLAYED_GAMES } from '../constants/constants';
+import { PlayedGameData } from '../constants/interfaces';
 import { FleetDistributionService } from '../services/fleet-distribution.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { FleetDistributionService } from '../services/fleet-distribution.service
   styleUrls: ['./final-results.component.scss']
 })
 export class FinalResultsComponent implements OnInit {
-  @Input() gid: number;
+  @Input() uid: string;
+  @Input() gid: string;
   @Input() strikes: number;
   @Input() strikesToWin: number;
   @Input() startTime: number;
@@ -20,7 +21,7 @@ export class FinalResultsComponent implements OnInit {
   endTime: number;
   haveWon: boolean;
   finalStatus: string;
-  userData: UserData;
+  playedGames: PlayedGameData[];
 
   constructor(
     private fleetDistributionService: FleetDistributionService,
@@ -30,13 +31,14 @@ export class FinalResultsComponent implements OnInit {
   ngOnInit(): void {
     this.endTime = Date.now();
     const uid = this.route.snapshot.paramMap.get('uid');
-    [this.userData] = FAKE_DATA.filter(data => data.uid === uid);
+    this.playedGames = PLAYED_GAMES.filter(data => data.uid === uid);
     this.strikes === this.strikesToWin ? this.haveWon = true : this.haveWon = false;
     this.haveWon ? this.finalStatus = 'Won' : this.finalStatus = 'Lost';
   }
 
   onBackToMenuClicked(): void {
-    const gameToRegister = {
+    const gameToRegister: PlayedGameData = {
+      uid: this.uid,
       gid: this.gid,
       startTime: this.startTime,
       endTime: this.endTime,
@@ -45,7 +47,8 @@ export class FinalResultsComponent implements OnInit {
       status: this.finalStatus,
       difficulty: this.difficulty,
     };
-    this.userData.playedGames.push(gameToRegister);
+    // Server adds played game
+    this.playedGames.push(gameToRegister);
     this.fleetDistributionService.resetForbiddenPoints();
   }
 }

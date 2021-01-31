@@ -9,7 +9,7 @@ export const FAKE_DATA = [{
         accuracy: '75',
         difficulty: 'Cadet',
         shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
-        clickedCellIds: ['C10', 'E8', 'F7', 'D9']
+        clickedCellsIds: ['C10', 'E8', 'F7', 'D9']
     }, {
         gid: 2,
         startTime: 654615341651,
@@ -19,7 +19,7 @@ export const FAKE_DATA = [{
         accuracy: '75',
         difficulty: 'Almirant',
         shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
-        clickedCellIds: ['C10', 'E8', 'F7', 'D9']
+        clickedCellsIds: ['C10', 'E8', 'F7', 'D9']
     }],
     playedGames: [{
         gid: 5,
@@ -50,7 +50,7 @@ export const FAKE_DATA = [{
         accuracy: '75',
         difficulty: 'Cadet',
         shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
-        clickedCellIds: ['C10', 'E8', 'F7', 'D9']
+        clickedCellsIds: ['C10', 'E8', 'F7', 'D9']
     }, {
         gid: 4,
         startTime: 654615341651,
@@ -60,7 +60,7 @@ export const FAKE_DATA = [{
         accuracy: '75',
         difficulty: 'Almirant',
         shipPositions: [{ x: 'A', y: 1}, { x: 'B', y: 2}],
-        clickedCellIds: ['C10', 'E8', 'F7', 'D9']
+        clickedCellsIds: ['C10', 'E8', 'F7', 'D9']
     }],
     playedGames: [{
         gid: 7,

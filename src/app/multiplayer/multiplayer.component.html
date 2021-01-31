@@ -24,7 +24,7 @@
                    style="text-align: center; text-transform: uppercase;"
                    [(ngModel)]="roomCode"
                    [disabled]="isInputDisabled"
-                   (keypress)="onInputKeypress(enterCode.value)">
+                   (keyup)="onInputKeyup(enterCode.value)">
         </div>
     </div>
 
@@ -38,7 +38,8 @@
             <button id="generate-code-button"
                     type="button"
                     class="btn btn-secondary"
-                    (click)="onGenerateCodeClicked()">
+                    (click)="onGenerateCodeClicked()"
+                    [disabled]="isGenerateCodeDisabled">
                 Generate Code
             </button>
         </div>
@@ -68,9 +69,8 @@
         <button id="enter-room-button"
                 type="button"
                 class="btn btn-success"
-                *ngIf="joinButtonVisible"
                 (click)="onJoinRoomClicked()"
-                [disabled]="joinButtonDisabled">
+                [disabled]="isJoinButtonDisabled">
             Join Room
         </button>
     </div>

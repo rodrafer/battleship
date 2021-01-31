@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FleetDistributionService } from '../services/fleet-distribution.service';
-import { Ship, BoardPoint, UserData, SavedGameData } from '../constants/interfaces';
-import { FAKE_DATA, FLEET } from '../constants/constants';
+import { Ship, BoardPoint, SavedGameData, LoadedGameData, StatusData } from '../constants/interfaces';
+import { FLEET, SAVED_GAMES } from '../constants/constants';
 import { ActivatedRoute } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -14,6 +14,7 @@ export class GameBoardComponent implements OnInit {
   boardTitle = 'battleship';
   isLoading = false;
   isMultiplayer = false;
+  enemyHasWon = false;
   turnsLeft = Infinity;
   usedTurns = 0;
   numberOfStrikes = 0;
@@ -25,13 +26,14 @@ export class GameBoardComponent implements OnInit {
   difficulty: string;
   startTime: number;
   endTime: number;
-  gid: number;
+  gid: string;
+  uid: string;
   shipPositions: BoardPoint[] = [];
-  clickedCellIds: string[] = [];
+  clickedCellsIds: string[] = [];
   fleet: Ship[];
-  userData: UserData;
   userSavedGames: SavedGameData[];
-  loadedGameData: SavedGameData;
+  userStatus: StatusData[] = [];
+  loadedGameData: LoadedGameData;
 
   constructor(
     private fleetDistributionService: FleetDistributionService,
@@ -41,8 +43,10 @@ export class GameBoardComponent implements OnInit {
   ngOnInit(): void {
     this.fleet = FLEET;
     const uid = this.route.snapshot.paramMap.get('uid');
-    [this.userData] = FAKE_DATA.filter(data => data.uid === uid);
-    this.userSavedGames = this.userData.savedGames;
+    this.uid = uid;
+    // Communicate from played games component if Load Game was clicked, set isLoadedGame to true,
+    // get selected game ship status from the server and assign it to loadedGameData
+    this.userSavedGames = SAVED_GAMES.filter(data => data.uid === uid);
     this.difficulty = this.route.snapshot.paramMap.get('difficulty');
     switch (this.difficulty) {
       case 'Lieutenant':
@@ -56,12 +60,12 @@ export class GameBoardComponent implements OnInit {
         break;
     }
     if (this.isLoadedGame) {
-      this.startTime = this.loadedGameData.startTime;
-      this.gid = this.loadedGameData.gid;
+      this.startTime = this.loadedGameData.savedGameToLoad.startTime;
+      this.gid = this.loadedGameData.savedGameToLoad.gid;
       this.shipPositions = this.loadedGameData.shipPositions;
     } else {
       this.startTime = Date.now();
-      this.gid = uuidv4().slice(0, 8);
+      this.gid = uuidv4();
       this.setFleetPosition();
       console.log(this.shipPositions);
     }
@@ -76,8 +80,8 @@ export class GameBoardComponent implements OnInit {
     });
   }
 
-  onCellClicked(cellId: string): void {
-    this.clickedCellIds.push(cellId);
+  private updateGameBoard(cellId: string): void {
+    this.clickedCellsIds.push(cellId);
     const xCoord = cellId[0];
     let yCoord;
     if (cellId.length === 3) {
@@ -109,26 +113,41 @@ export class GameBoardComponent implements OnInit {
 
   onBackClicked(): void {
     this.fleetDistributionService.resetForbiddenPoints();
-    this.userHasLeft = true;
+    if (this.isMultiplayer) {
+      this.userHasLeft = true;
+      // Communicate to the App component that user has left
+    }
+  }
+
+  onCellClicked(cellId: string): void {
+    this.updateGameBoard(cellId);
   }
 
   onSaveClicked(): void {
-    const gameToSave = {
+    const gameToSave: SavedGameData = {
+      uid: this.uid,
       gid: this.gid,
       startTime: this.startTime,
       turnsLeft: this.turnsLeft,
       usedTurns: this.usedTurns,
       numberOfStrikes: this.numberOfStrikes,
       accuracy: this.accuracy,
-      difficulty: this.difficulty,
-      shipPositions: this.shipPositions,
-      clickedCellIds: this.clickedCellIds
+      difficulty: this.difficulty
     };
+    const statusToSave: StatusData = {
+      shipPositions: this.shipPositions,
+      clickedCellsIds: this.clickedCellsIds
+    }
     if (this.isLoadedGame) {
+      // Server updates database
       const loadedGameIndex = this.userSavedGames.findIndex(game => game.gid === gameToSave.gid);
       this.userSavedGames[loadedGameIndex] = {...this.userSavedGames[loadedGameIndex], ...gameToSave};
     } else {
+      // Server adds a saved game, several ship positions and several clicked cells ids
       this.userSavedGames.push(gameToSave);
+      console.log(this.userSavedGames)
+      this.userStatus.push(statusToSave);
+      console.log(this.userStatus)
       this.fleetDistributionService.resetForbiddenPoints();
     }
   }

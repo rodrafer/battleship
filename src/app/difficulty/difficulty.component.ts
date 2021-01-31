@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserData, DifficultyOptions } from '../constants/interfaces';
-import { FAKE_DATA, DIFFICULTY_OPTIONS } from '../constants/constants';
+import { DifficultyOptions } from '../constants/interfaces';
+import { DIFFICULTY_OPTIONS } from '../constants/constants';
 
 @Component({
   selector: 'app-difficulty',
@@ -10,13 +10,13 @@ import { FAKE_DATA, DIFFICULTY_OPTIONS } from '../constants/constants';
 export class DifficultyComponent implements OnInit {
   difficultyTitle = 'Choose a difficulty';
   isLoading = false;
-  user: UserData;
+  uid: string;
   difficulties: DifficultyOptions[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.user = FAKE_DATA[0];
+    this.uid = '12345';
     this.difficulties = DIFFICULTY_OPTIONS;
   }
 

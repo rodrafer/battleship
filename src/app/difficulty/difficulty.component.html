@@ -9,7 +9,7 @@
 
     <div id="difficulty-options" class="difficulty-container" *ngIf="!isLoading">
         <div id="button-wrapper" class="route-wrapper" *ngFor="let difficulty of difficulties">
-            <a routerLink="/game-board/{{difficulty.name}}/{{user.uid}}" id="{{difficulty.anchorId}}" class="difficulty-button">
+            <a routerLink="/game-board/{{difficulty.name}}/{{uid}}" id="{{difficulty.anchorId}}" class="difficulty-button">
                 <button id="{{difficulty.buttonId}}" type="button" class="btn {{difficulty.buttonClass}}">{{difficulty.name}}</button>
             </a>
             <p id="button-description" class="{{difficulty.textClass}}">{{difficulty.description}}</p>

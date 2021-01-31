@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FAKE_DATA } from '../constants/constants';
-import { UserData } from '../constants/interfaces';
+import { PLAYED_GAMES, SAVED_GAMES } from '../constants/constants';
+import { PlayedGameData, SavedGameData } from '../constants/interfaces';
 
 
 @Component({
@@ -10,9 +10,11 @@ import { UserData } from '../constants/interfaces';
   styleUrls: ['./played-games.component.scss']
 })
 export class PlayedGamesComponent implements OnInit {
-  gamesToDisplay: any;
+  uid: string;
   typeOfGame: string;
-  userData: UserData;
+  gamesToDisplay: any;
+  savedGames: SavedGameData;
+  playedGames: PlayedGameData;
   gameDifficulty: string;
   isLoadDisabled = true;
   isLoading = false;
@@ -23,11 +25,14 @@ export class PlayedGamesComponent implements OnInit {
     const game = this.route.snapshot.paramMap.get('game');
     const uid = this.route.snapshot.paramMap.get('uid');
     this.typeOfGame = game;
-    [this.userData] = FAKE_DATA.filter(data => data.uid === uid);
-    const {playedGames, savedGames} = this.userData;
+    this.uid = uid;
     if (this.typeOfGame === 'played') {
+      // Server brings user played games
+      const playedGames = PLAYED_GAMES.filter(data => data.uid === uid);
       this.gamesToDisplay = playedGames;
     } else if (this.typeOfGame === 'saved') {
+      // Server brings user saved games
+      const savedGames = SAVED_GAMES.filter(data => data.uid === uid);
       this.gamesToDisplay = savedGames;
     }
   }
@@ -37,4 +42,8 @@ export class PlayedGamesComponent implements OnInit {
     this.isLoadDisabled = false;
   }
 
+  onLoadGameClicked(): void {
+    // Get selected game status from the server, communicate game board component
+    // that Load Game was clicked and send it the selected game status.
+  }
 }
