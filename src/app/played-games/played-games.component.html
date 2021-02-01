@@ -41,14 +41,6 @@
             </thead>
             <tbody id="played-body" class="table-body" *ngSwitchCase="'played'">
                 <tr id="values-played" class="table-active" *ngFor="let game of gamesToDisplay">
-                    <td id="radio-saved" class="value">
-                        <input type="radio"
-                               class="form-check-input"
-                               name="optionsRadios"
-                               id="optionsRadios{{game.gid}}"
-                               value="option{{game.gid}}"
-                               (click)="onOptionClicked(game.difficulty, game.gid)">
-                    </td>
                     <td id="start-played" class="value">
                         {{game.start_time | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}
                     </td>
@@ -59,11 +51,10 @@
                     <td id="accuracy-played" class="value">{{game.accuracy}}%</td>
                     <td id="status-played" class="value">{{game.status}}</td>
                     <td id="difficulty-played" class="value">{{game.difficulty}}</td>
-                    <td id="delete-saved" class="value">
+                    <td id="delete-saved" class="value" (click)="onDeleteClicked(game.gid)">
                         <img id="delete-icon"
                              class="delete"
-                             src="../../assets/trash-icon.png"
-                             (click)="onDeleteClicked()">
+                             src="../../assets/trash-icon.png">
                     </td>
                 </tr>
             </tbody>
