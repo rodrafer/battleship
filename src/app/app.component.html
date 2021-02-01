@@ -1,8 +1,8 @@
 <div id="dark-ocean-container" class="background-container">
   <div id="game-console" class="console">
-    <router-outlet (activate)="onActivate()" *ngIf="auth.user | async"></router-outlet>
+    <router-outlet (activate)="onActivate()" *ngIf="angularAuth.user | async"></router-outlet>
 
-    <div id="login-wrapper" class="login-container" *ngIf="!(auth.user | async)">
+    <div id="login-wrapper" class="login-container" *ngIf="!(angularAuth.user | async)">
       <h1 id="login-title" class="title">Please sign in first...</h1>
       <button id="login-button"
               type="button"
@@ -12,7 +12,7 @@
       </button>
     </div>
 
-    <div id="logut-wrapper" class="logout-container" *ngIf="auth.user | async">
+    <div id="logut-wrapper" class="logout-container" *ngIf="angularAuth.user | async">
       <button id="logout-button"
               type="button"
               class="btn btn-primary"
