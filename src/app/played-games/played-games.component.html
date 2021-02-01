@@ -52,9 +52,11 @@
                     <td id="status-played" class="value">{{game.status}}</td>
                     <td id="difficulty-played" class="value">{{game.difficulty}}</td>
                     <td id="delete-saved" class="value" (click)="onDeleteClicked(game.gid)">
-                        <img id="delete-icon"
-                             class="delete"
-                             src="../../assets/trash-icon.png">
+                        <button id="delete-button" class="button">
+                            <img id="delete-icon"
+                                    class="delete"
+                                    src="../../assets/trash-icon.png">
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -78,9 +80,11 @@
                     <td id="accuracy-saved" class="value">{{game.accuracy}}%</td>
                     <td id="difficulty-saved" class="value">{{game.difficulty}}</td>
                     <td id="delete-saved" class="value" (click)="onDeleteClicked(game.gid)">
-                        <img id="delete-icon"
-                             class="delete"
-                             src="../../assets/trash-icon.png">
+                        <button id="delete-button" class="button">
+                            <img id="delete-icon"
+                                class="delete"
+                                src="../../assets/trash-icon.png">
+                        </button>
                     </td>
                 </tr>
             </tbody>
