@@ -26,6 +26,7 @@
                     <th id="accuracy-played" class="label" scope="col">Accuracy</th>
                     <th id="status-played" class="label" scope="col">Result</th>
                     <th id="difficulty-played" class="label" scope="col">Difficulty</th>
+                    <th id="delete-played" class="label" scope="col"></th>
                 </tr>
             </thead>
             <thead id="saved-header" class="table-head" *ngSwitchCase="'saved'">
@@ -35,10 +36,19 @@
                     <th id="turns-saved" class="label" scope="col">Turns left</th>
                     <th id="accuracy-saved" class="label" scope="col">Accuracy</th>
                     <th id="difficulty-saved" class="label" scope="col">Difficulty</th>
+                    <th id="delete-saved" class="label" scope="col"></th>
                 </tr>
             </thead>
             <tbody id="played-body" class="table-body" *ngSwitchCase="'played'">
                 <tr id="values-played" class="table-active" *ngFor="let game of gamesToDisplay">
+                    <td id="radio-saved" class="value">
+                        <input type="radio"
+                               class="form-check-input"
+                               name="optionsRadios"
+                               id="optionsRadios{{game.gid}}"
+                               value="option{{game.gid}}"
+                               (click)="onOptionClicked(game.difficulty, game.gid)">
+                    </td>
                     <td id="start-played" class="value">
                         {{game.start_time | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}
                     </td>
@@ -49,6 +59,12 @@
                     <td id="accuracy-played" class="value">{{game.accuracy}}%</td>
                     <td id="status-played" class="value">{{game.status}}</td>
                     <td id="difficulty-played" class="value">{{game.difficulty}}</td>
+                    <td id="delete-saved" class="value">
+                        <img id="delete-icon"
+                             class="delete"
+                             src="../../assets/trash-icon.png"
+                             (click)="onDeleteClicked()">
+                    </td>
                 </tr>
             </tbody>
             <tbody id="saved-body" class="table-body" *ngSwitchCase="'saved'">
@@ -70,6 +86,11 @@
                     <td id="turns-saved" class="value" *ngIf="!game.turns_left">Unlimited</td>
                     <td id="accuracy-saved" class="value">{{game.accuracy}}%</td>
                     <td id="difficulty-saved" class="value">{{game.difficulty}}</td>
+                    <td id="delete-saved" class="value" (click)="onDeleteClicked(game.gid)">
+                        <img id="delete-icon"
+                             class="delete"
+                             src="../../assets/trash-icon.png">
+                    </td>
                 </tr>
             </tbody>
         </table>

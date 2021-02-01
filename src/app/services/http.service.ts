@@ -78,4 +78,12 @@ export class HttpService {
       httpOptions
     );
   }
+
+  deleteSavedGame(uid: string, gid: string): Observable<any> {
+    return this.http.delete<any>(`/api/${uid}/saved-game/${gid}`);
+  }
+
+  deletePlayedGame(uid: string, gid: string): Observable<any> {
+    return this.http.delete<any>(`/api/${uid}/played-game/${gid}`);
+  }
 }

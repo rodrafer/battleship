@@ -49,4 +49,16 @@ export class PlayedGamesComponent implements OnInit {
   // Get selected game status from the server, communicate game board component
   // that Load Game was clicked and send it the selected game status.
   // THIS IS DONE THROUG DATA ROUTER LINK PARAMETER IN TEMPLATE
+
+  onDeleteClicked(gid): void {
+    if (this.typeOfGame === 'played') {
+      // Server brings user played games
+      this.httpService.deleteSavedGame(this.uid, gid)
+        .subscribe(() => 'Game deleted!');
+    } else if (this.typeOfGame === 'saved') {
+      // Server brings user saved games
+      this.httpService.deletePlayedGame(this.uid, gid)
+        .subscribe(() => 'Game deleted!');
+    }
+  }
 }
