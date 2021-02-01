@@ -13,7 +13,12 @@
     </div>
 
     <div id="logut-wrapper" class="logout-container" *ngIf="auth.user | async">
-      <button id="logout-button" type="button" class="btn btn-primary" (click)="signOutClicked()">Log Out</button>
+      <button id="logout-button"
+              type="button"
+              class="btn btn-primary"
+              (click)="signOutClicked()">
+              Log Out
+      </button>
     </div>
   </div>
 
@@ -23,7 +28,12 @@
         <h4 id="alert-title" class="alert-heading">Oops!</h4>
         <p id="alert-message" class="mb-0">It seems that the enemy surrendered...</p>
         <a routerLink="/main-menu" id="alert-route" class="alert-link">
-          <button id="back-button" type="button" class="btn btn-outline-warning" (click)="onBackClicked()">Back to Menu</button>
+          <button id="back-button"
+                  type="button"
+                  class="btn btn-outline-warning"
+                  (click)="onBackClicked()">
+                  Back to Menu
+          </button>
         </a>
     </div>
   </div>

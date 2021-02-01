@@ -3,7 +3,9 @@
 
     <div id="menu-options" class="menu-container">
         <div id="button-wrapper" class="route-wrapper" *ngFor="let option of options">
-            <a routerLink="{{option.link}}/{{uid}}" id="{{option.anchorId}}" class="menu-button">
+            <a routerLink="{{option.link}}/{{uid}}"
+               id="{{option.anchorId}}"
+               class="menu-button">
                 <button id="{{option.buttonId}}"
                         type="button"
                         class="btn btn-primary">

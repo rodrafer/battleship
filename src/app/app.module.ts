@@ -8,7 +8,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-import { SavedGamesComponent } from './saved-games/saved-games.component';
 import { DifficultyComponent } from './difficulty/difficulty.component';
 import { PlayedGamesComponent } from './played-games/played-games.component';
 import { MultiplayerComponent } from './multiplayer/multiplayer.component';
@@ -21,7 +20,6 @@ import { environment } from 'src/environments/environment';
   declarations: [
     AppComponent,
     MainMenuComponent,
-    SavedGamesComponent,
     DifficultyComponent,
     PlayedGamesComponent,
     MultiplayerComponent,

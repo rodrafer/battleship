@@ -1,14 +1,23 @@
 <div id="games-wrapper" class="wrapper" [ngSwitch]="typeOfGame">
     <div id="games-header" class="header-container" *ngIf="!isLoading">
         <a routerLink="/main-menu" id="back-route" class="back-button">
-            <button id="back-button" type="button" class="btn btn-outline-primary">BACK</button>
+            <button id="back-button"
+                    type="button"
+                    class="btn btn-outline-primary">
+                    BACK
+            </button>
         </a>
         <h1 id="title-fail" class="title" *ngSwitchCase="'played'">PLAYED GAMES</h1>
         <h1 id="title-success" class="title" *ngSwitchCase="'saved'">SAVED GAMES</h1>
     </div>
 
-    <div id="stats" class="stats-container" [ngClass]="typeOfGame === 'played' ? 'played-container' : 'saved-container'" *ngIf="!isLoading">
-        <table id="stats-table" class="table table-hover" [ngClass]="typeOfGame === 'played' ? 'played' : 'saved'">
+    <div id="stats"
+         class="stats-container"
+         [ngClass]="typeOfGame === 'played' ? 'played-container' : 'saved-container'"
+         *ngIf="!isLoading">
+        <table id="stats-table"
+               class="table table-hover"
+               [ngClass]="typeOfGame === 'played' ? 'played' : 'saved'">
             <thead id="played-header" class="table-head" *ngSwitchCase="'played'">
                 <tr id="labels-played" class="table-row">
                     <th id="start-played" class="label" scope="col">Start Time</th>
@@ -30,8 +39,12 @@
             </thead>
             <tbody id="played-body" class="table-body" *ngSwitchCase="'played'">
                 <tr id="values-played" class="table-active" *ngFor="let game of gamesToDisplay">
-                    <td id="start-played" class="value">{{game.start_time | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
-                    <td id="end-played" class="value">{{game.end_time | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}</td>
+                    <td id="start-played" class="value">
+                        {{game.start_time | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}
+                    </td>
+                    <td id="end-played" class="value">
+                        {{game.end_time | date: 'MM-dd-yyyy hh:mm aaa': 'GMT-03'}}
+                    </td>
                     <td id="turns-played" class="value">{{game.used_turns}}</td>
                     <td id="accuracy-played" class="value">{{game.accuracy}}%</td>
                     <td id="status-played" class="value">{{game.status}}</td>
@@ -62,7 +75,11 @@
         </table>
     </div>
 
-    <a routerLink="/game-board/{{gameDifficulty}}/{{uid}}" [state]="{ data: gameId }" id="load-route" class="load-game" *ngSwitchCase="'saved'">
+    <a routerLink="/game-board/{{gameDifficulty}}/{{uid}}"
+       [state]="{ data: gameId }"
+       id="load-route"
+       class="load-game"
+       *ngSwitchCase="'saved'">
         <button type="button"
                 id="load-button"
                 class="btn btn-secondary load"

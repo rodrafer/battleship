@@ -2,15 +2,25 @@
 
     <div id="difficulty-header" class="header" *ngIf="!isLoading">
         <a routerLink="/main-menu" id="back-route" class="back-button">
-            <button id="back-button" type="button" class="btn btn-outline-primary">BACK</button>
+            <button id="back-button"
+                    type="button"
+                    class="btn btn-outline-primary">
+                    BACK
+            </button>
         </a>
         <h1 id="difficulty-title" class="difficulty-title">{{difficultyTitle}}</h1>
     </div>
 
     <div id="difficulty-options" class="difficulty-container" *ngIf="!isLoading">
         <div id="button-wrapper" class="route-wrapper" *ngFor="let difficulty of difficulties">
-            <a routerLink="/game-board/{{difficulty.name}}/{{uid}}" id="{{difficulty.anchorId}}" class="difficulty-button">
-                <button id="{{difficulty.buttonId}}" type="button" class="btn {{difficulty.buttonClass}}">{{difficulty.name}}</button>
+            <a routerLink="/game-board/{{difficulty.name}}/{{uid}}"
+               id="{{difficulty.anchorId}}"
+               class="difficulty-button">
+                <button id="{{difficulty.buttonId}}"
+                        type="button"
+                        class="btn {{difficulty.buttonClass}}">
+                        {{difficulty.name}}
+                </button>
             </a>
             <p id="button-description" class="{{difficulty.textClass}}">{{difficulty.description}}</p>
         </div>

@@ -10,12 +10,12 @@ const httpOptions = {
   })
 };
 
-const httpOptionsWithAuthToken = token => ({
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'AuthToken': token,
-  })
-});
+// const httpOptionsWithAuthToken = token => ({
+//   headers: new HttpHeaders({
+//     'Content-Type': 'application/json',
+//     'AuthToken': token,
+//   })
+// });
 
 @Injectable({
   providedIn: 'root'

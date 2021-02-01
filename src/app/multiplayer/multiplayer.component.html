@@ -1,7 +1,11 @@
 <div id="multiplayer-wrapper" class="wrapper">
     <div id="multiplayer-header" class="header-container">
         <a routerLink="/main-menu" id="back-route" class="back-button">
-            <button id="back-button" type="button" class="btn btn-outline-primary">BACK</button>
+            <button id="back-button"
+                    type="button"
+                    class="btn btn-outline-primary">
+                    BACK
+            </button>
         </a>
         <h1 id="multiplayer-title" class="title">MULTIPLAYER</h1>
     </div>
@@ -45,7 +49,10 @@
         </div>
 
         <div id="generated-code-form" class="form-group" *ngIf="codeGenerated">
-            <label id="generated-code-label" class="control-label">Your Room Code:</label>
+            <label id="generated-code-label"
+                   class="control-label">
+                   Your Room Code:
+            </label>
             <div id="generated-code-container" class="form-group">
                 <div id="generated-code-box" class="input-group mb-3">
                     <input id="generated-code-input"
@@ -58,7 +65,9 @@
                         <button id="copy-code"
                                 type="button"
                                 class="input-group-text"
-                                (click)="onCopyClicked()">Copy</button>
+                                (click)="onCopyClicked()">
+                                Copy
+                        </button>
                     </div>
                 </div>
             </div>
@@ -71,7 +80,7 @@
                 class="btn btn-success"
                 (click)="onJoinRoomClicked()"
                 [disabled]="isJoinButtonDisabled">
-            Join Room
+                Join Room
         </button>
     </div>
 </div>
