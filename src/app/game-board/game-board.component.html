@@ -1,6 +1,6 @@
 <div id="game-wrapper" class="wrapper" *ngIf="turnsLeft !== 0 && numberOfStrikes !== shipPositions.length && !enemyHasWon">
     <div id="difficulty-header" class="header-container">
-        <a routerLink="/main-menu" id="back-route" class="back-button">
+        <a routerLink="/main-menu" [state]="{ flag: userHasLeft }" id="back-route" class="back-button">
             <button id="back-button" type="button" class="btn btn-outline-primary" (click)="onBackClicked()">BACK</button>
         </a>
         <h1 id="board-title" class="board-title" *ngIf="!isLoading">{{boardTitle | uppercase}}</h1>
@@ -110,6 +110,7 @@
                        [startTime]="startTime"
                        [usedTurns]="usedTurns"
                        [accuracy]="accuracy"
-                       [difficulty]="difficulty">
+                       [difficulty]="difficulty"
+                       (tryAgain)="onTryAgainClicked()">
     </app-final-results>
 </div>

@@ -1,7 +1,22 @@
 <div id="dark-ocean-container" class="background-container">
   <div id="game-console" class="console">
-    <router-outlet (userLeft)="handleComponent($event)"></router-outlet>
+    <router-outlet (activate)="onActivate()" *ngIf="auth.user | async"></router-outlet>
+
+    <div id="login-wrapper" class="login-container" *ngIf="!(auth.user | async)">
+      <h1 id="login-title" class="title">Please sign in first...</h1>
+      <button id="login-button"
+              type="button"
+              class="btn btn-primary"
+              (click)="signInClicked()">
+              Sign in with Google
+      </button>
+    </div>
+
+    <div id="logut-wrapper" class="logout-container" *ngIf="auth.user | async">
+      <button id="logout-button" type="button" class="btn btn-primary" (click)="signOutClicked()">Log Out</button>
+    </div>
   </div>
+
   
   <div id="alert-wrapper" class="wrapper" *ngIf="userHasLeft">
     <div id="alert-group" class="alert alert-dismissible alert-warning">

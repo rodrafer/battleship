@@ -6,7 +6,8 @@ export const registerSavedGame = {
     // eslint-disable-next-line
     handler: async (req, h) => {
         const uid = req.params.uid;
-        const payload = JSON.parse(req.payload);
+        let payload;
+        typeof req.payload === 'string' ? payload = JSON.parse(req.payload) : payload = req.payload;
         const { gid, startTime, turnsLeft, usedTurns, strikes, accuracy, difficulty } = payload;
         await db.query(`
             INSERT INTO saved_games (uid, gid, start_time, turns_left, used_turns, strikes, accuracy, difficulty)

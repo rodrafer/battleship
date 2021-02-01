@@ -19,16 +19,29 @@
     opacity: 0.8;
 }
 
-router-outlet {
-    height: 25px;
-    width: 25px;
-}
-
 .console {
     position: relative;
     height: 600px;
     width: 800px;
     border: 1px solid white;
+
+    .login-container {
+        position: relative;
+        height: 600px;
+        width: 800px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .title {
+            color: white;
+        }
+    }
+
+    .logout-container {
+        position: relative;
+    }
 }
 
 .console::before {

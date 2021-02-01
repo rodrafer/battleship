@@ -72,13 +72,14 @@ export const FLEET: Ship[] = [
     }
   ];
 
-  export const SAVED_GAMES: SavedGameData[] = [{
+export const SAVED_GAMES: SavedGameData[] = [
+    {
         uid: '12345',
         gid: '1',
         startTime: 654615341651,
         turnsLeft: 35,
         usedTurns: 25,
-        numberOfStrikes: 10,
+        strikes: 10,
         accuracy: '75',
         difficulty: 'Cadet'
     }, {
@@ -87,7 +88,7 @@ export const FLEET: Ship[] = [
         startTime: 654615341651,
         turnsLeft: 35,
         usedTurns: 15,
-        numberOfStrikes: 10,
+        strikes: 10,
         accuracy: '75',
         difficulty: 'Almirant'
     }, {
@@ -96,7 +97,7 @@ export const FLEET: Ship[] = [
         startTime: 654615341651,
         turnsLeft: 35,
         usedTurns: 25,
-        numberOfStrikes: 10,
+        strikes: 10,
         accuracy: '75',
         difficulty: 'Cadet'
     }, {
@@ -105,13 +106,14 @@ export const FLEET: Ship[] = [
         startTime: 654615341651,
         turnsLeft: 35,
         usedTurns: 15,
-        numberOfStrikes: 10,
+        strikes: 10,
         accuracy: '75',
         difficulty: 'Almirant'
     }
 ];
 
-export const PLAYED_GAMES: PlayedGameData[] = [{
+export const PLAYED_GAMES: PlayedGameData[] = [
+    {
         uid: '12345',
         gid: '1',
         startTime: 10684684026824,

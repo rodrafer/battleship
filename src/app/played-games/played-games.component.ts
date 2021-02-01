@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PLAYED_GAMES, SAVED_GAMES } from '../constants/constants';
 import { PlayedGameData, SavedGameData } from '../constants/interfaces';
-
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-played-games',
@@ -16,10 +15,14 @@ export class PlayedGamesComponent implements OnInit {
   savedGames: SavedGameData;
   playedGames: PlayedGameData;
   gameDifficulty: string;
+  gameId: string;
   isLoadDisabled = true;
   isLoading = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private httpService: HttpService
+  ) { }
 
   ngOnInit(): void {
     const game = this.route.snapshot.paramMap.get('game');
@@ -28,22 +31,22 @@ export class PlayedGamesComponent implements OnInit {
     this.uid = uid;
     if (this.typeOfGame === 'played') {
       // Server brings user played games
-      const playedGames = PLAYED_GAMES.filter(data => data.uid === uid);
-      this.gamesToDisplay = playedGames;
+      this.httpService.getUserPlayedGames(uid)
+        .subscribe(playedGames => this.gamesToDisplay = playedGames);
     } else if (this.typeOfGame === 'saved') {
       // Server brings user saved games
-      const savedGames = SAVED_GAMES.filter(data => data.uid === uid);
-      this.gamesToDisplay = savedGames;
+      this.httpService.getUserSavedGames(uid)
+        .subscribe(savedGames => this.gamesToDisplay = savedGames);
     }
   }
 
-  onOptionClicked(difficulty: string): void {
+  onOptionClicked(difficulty: string, gid: string): void {
     this.gameDifficulty = difficulty;
+    this.gameId = gid;
     this.isLoadDisabled = false;
   }
 
-  onLoadGameClicked(): void {
-    // Get selected game status from the server, communicate game board component
-    // that Load Game was clicked and send it the selected game status.
-  }
+  // Get selected game status from the server, communicate game board component
+  // that Load Game was clicked and send it the selected game status.
+  // THIS IS DONE THROUG DATA ROUTER LINK PARAMETER IN TEMPLATE
 }

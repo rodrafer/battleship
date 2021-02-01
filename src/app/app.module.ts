@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,7 @@ import { MultiplayerComponent } from './multiplayer/multiplayer.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import { FinalResultsComponent } from './final-results/final-results.component';
 import { FleetDistributionService } from './services/fleet-distribution.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { FleetDistributionService } from './services/fleet-distribution.service'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [FleetDistributionService],
   bootstrap: [AppComponent]

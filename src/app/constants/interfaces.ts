@@ -4,7 +4,7 @@ export interface SavedGameData {
     startTime: number;
     turnsLeft: number;
     usedTurns: number;
-    numberOfStrikes: number;
+    strikes: number;
     accuracy: string;
     difficulty: string;
 }
@@ -21,7 +21,7 @@ export interface PlayedGameData {
 }
 
 export interface LoadedGameData {
-    savedGameToLoad: SavedGameData;
+    savedGameInfo: SavedGameData;
     shipPositions: BoardPoint[];
     clickedCellsIds: string[];
 }

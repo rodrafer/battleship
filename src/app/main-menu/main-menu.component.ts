@@ -18,5 +18,4 @@ export class MainMenuComponent implements OnInit {
     this.uid = '12345';
     this.options = MENU_OPTIONS;
   }
-
 }

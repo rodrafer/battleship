@@ -19,24 +19,24 @@ export const getSavedGameStatus = {
             'SELECT * FROM ship_positions WHERE uid=? AND gid=?',
             [uid, gid]
         );
-        const shipPositions = shipsStatus.results;
+        const shipPositionsEntries = shipsStatus.results;
 
         const cellsStatus = await db.query(
             'SELECT * FROM cell_ids WHERE uid=? AND gid=?',
             [uid, gid]
         );
-        const clickedCellsIds = cellsStatus.results;
+        const clickedCellsEntries = cellsStatus.results;
 
         if (!savedGameInfo) throw Boom.notFound(`
             Unable to get saved game info for user id ${uid} and game id ${gid}
         `);
-        if (!shipPositions) throw Boom.notFound(`
+        if (!shipPositionsEntries) throw Boom.notFound(`
             Unable to get ship positions status for user id ${uid} and game id ${gid}
         `);
-        if (!clickedCellsIds) throw Boom.notFound(`
+        if (!clickedCellsEntries) throw Boom.notFound(`
             Unable to get clicked cell ids status for user id ${uid} and game id ${gid}
         `);
 
-        return { savedGameInfo, shipPositions, clickedCellsIds };
+        return { savedGameInfo, shipPositionsEntries, clickedCellsEntries };
     }
 }

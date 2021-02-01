@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PLAYED_GAMES } from '../constants/constants';
 import { PlayedGameData } from '../constants/interfaces';
 import { FleetDistributionService } from '../services/fleet-distribution.service';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-final-results',
@@ -23,9 +24,13 @@ export class FinalResultsComponent implements OnInit {
   finalStatus: string;
   playedGames: PlayedGameData[];
 
+  @Output() tryAgain = new EventEmitter<boolean>();
+
   constructor(
     private fleetDistributionService: FleetDistributionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private httpService: HttpService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +53,13 @@ export class FinalResultsComponent implements OnInit {
       difficulty: this.difficulty,
     };
     // Server adds played game
-    this.playedGames.push(gameToRegister);
+    this.httpService.registerPlayedGame(this.uid, gameToRegister)
+        .subscribe(() => console.log('Game registered!'));
+    // this.playedGames.push(gameToRegister);
     this.fleetDistributionService.resetForbiddenPoints();
+  }
+
+  onTryAgainClicked(): void {
+    this.tryAgain.emit(true);
   }
 }
