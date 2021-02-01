@@ -43,8 +43,19 @@
 
     .button-container {
         position: relative;
+        width: 600px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
         
             #results-back-button {
+                position: relative;
+                color: white;
+                border-color: white;
+                margin-top: 25px;
+            }
+
+            #try-again-button {
                 position: relative;
                 color: white;
                 border-color: white;

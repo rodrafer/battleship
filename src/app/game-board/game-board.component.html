@@ -1,9 +1,23 @@
-<div id="game-wrapper" class="wrapper" *ngIf="turnsLeft !== 0 && numberOfStrikes !== shipPositions.length">
+<div id="game-wrapper"
+     class="wrapper"
+     *ngIf="turnsLeft !== 0 && numberOfStrikes !== shipPositions.length && !enemyHasWon">
     <div id="difficulty-header" class="header-container">
-        <a routerLink="/main-menu" id="back-route" class="back-button">
-            <button id="back-button" type="button" class="btn btn-outline-primary" (click)="onBackClicked()">BACK</button>
+        <a routerLink="/main-menu"
+           [state]="{ flag: userHasLeft }"
+           id="back-route"
+           class="back-button">
+            <button id="back-button"
+                    type="button"
+                    class="btn btn-outline-primary"
+                    (click)="onBackClicked()">
+                    BACK
+            </button>
         </a>
-        <h1 id="board-title" class="board-title" *ngIf="!isLoading">{{boardTitle | uppercase}}</h1>
+        <h1 id="board-title"
+            class="board-title"
+            *ngIf="!isLoading">
+            {{boardTitle | uppercase}}
+        </h1>
     </div>
 
     <div id="enemy-badge" class="badge-container" *ngIf="isMultiplayer">
@@ -100,15 +114,17 @@
 </div>
 
 <div id="final-results" class="results-container">
-    <app-final-results *ngIf="turnsLeft === 0 || numberOfStrikes === shipPositions.length"
+    <app-final-results *ngIf="turnsLeft === 0 || numberOfStrikes === shipPositions.length || enemyHasWon"
                        id="results"
                        class="results-component"
+                       [uid]="uid"
                        [gid]="gid"
                        [strikes]="numberOfStrikes"
                        [strikesToWin]="shipPositions.length"
                        [startTime]="startTime"
                        [usedTurns]="usedTurns"
                        [accuracy]="accuracy"
-                       [difficulty]="difficulty">
+                       [difficulty]="difficulty"
+                       (tryAgain)="onTryAgainClicked()">
     </app-final-results>
 </div>

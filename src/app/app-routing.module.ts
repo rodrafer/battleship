@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-import { SavedGamesComponent } from './saved-games/saved-games.component';
 import { DifficultyComponent } from './difficulty/difficulty.component';
 import { PlayedGamesComponent } from './played-games/played-games.component';
 import { MultiplayerComponent } from './multiplayer/multiplayer.component';

@@ -9,6 +9,8 @@ import { deleteMultiplayerCode } from './deleteMultiplayerCode';
 import { updateSavedGame } from './updateSavedGame';
 import { addClickedCellId } from './addClickedCellId';
 import { addShipPosition } from './addShipPosition';
+import { deleteSavedGame } from './deleteSavedGame';
+import { deletePlayedGame } from './deletePlayedGame';
 
 export default [
     getUserSavedGames,
@@ -21,5 +23,7 @@ export default [
     deleteMultiplayerCode,
     updateSavedGame,
     addClickedCellId,
-    addShipPosition
+    addShipPosition,
+    deleteSavedGame,
+    deletePlayedGame
 ];

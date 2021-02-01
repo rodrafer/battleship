@@ -1,7 +1,11 @@
 <div id="multiplayer-wrapper" class="wrapper">
     <div id="multiplayer-header" class="header-container">
         <a routerLink="/main-menu" id="back-route" class="back-button">
-            <button id="back-button" type="button" class="btn btn-outline-primary">BACK</button>
+            <button id="back-button"
+                    type="button"
+                    class="btn btn-outline-primary">
+                    BACK
+            </button>
         </a>
         <h1 id="multiplayer-title" class="title">MULTIPLAYER</h1>
     </div>
@@ -24,7 +28,7 @@
                    style="text-align: center; text-transform: uppercase;"
                    [(ngModel)]="roomCode"
                    [disabled]="isInputDisabled"
-                   (keypress)="onInputKeypress(enterCode.value)">
+                   (keyup)="onInputKeyup(enterCode.value)">
         </div>
     </div>
 
@@ -38,13 +42,17 @@
             <button id="generate-code-button"
                     type="button"
                     class="btn btn-secondary"
-                    (click)="onGenerateCodeClicked()">
+                    (click)="onGenerateCodeClicked()"
+                    [disabled]="isGenerateCodeDisabled">
                 Generate Code
             </button>
         </div>
 
         <div id="generated-code-form" class="form-group" *ngIf="codeGenerated">
-            <label id="generated-code-label" class="control-label">Your Room Code:</label>
+            <label id="generated-code-label"
+                   class="control-label">
+                   Your Room Code:
+            </label>
             <div id="generated-code-container" class="form-group">
                 <div id="generated-code-box" class="input-group mb-3">
                     <input id="generated-code-input"
@@ -57,7 +65,9 @@
                         <button id="copy-code"
                                 type="button"
                                 class="input-group-text"
-                                (click)="onCopyClicked()">Copy</button>
+                                (click)="onCopyClicked()">
+                                Copy
+                        </button>
                     </div>
                 </div>
             </div>
@@ -68,10 +78,9 @@
         <button id="enter-room-button"
                 type="button"
                 class="btn btn-success"
-                *ngIf="joinButtonVisible"
                 (click)="onJoinRoomClicked()"
-                [disabled]="joinButtonDisabled">
-            Join Room
+                [disabled]="isJoinButtonDisabled">
+                Join Room
         </button>
     </div>
 </div>

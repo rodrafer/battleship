@@ -1,17 +1,17 @@
 export interface SavedGameData {
-    gid: number;
+    uid: string;
+    gid: string;
     startTime: number;
     turnsLeft: number;
     usedTurns: number;
-    numberOfStrikes: number;
+    strikes: number;
     accuracy: string;
     difficulty: string;
-    shipPositions: BoardPoint[];
-    clickedCellIds: string[];
 }
 
 export interface PlayedGameData {
-    gid: number;
+    uid: string;
+    gid: string;
     startTime: number;
     endTime: number;
     usedTurns: number;
@@ -20,10 +20,19 @@ export interface PlayedGameData {
     difficulty: string;
 }
 
-export interface UserData {
+export interface LoadedGameData {
+    savedGameInfo: SavedGameData;
+    shipPositions: BoardPoint[];
+    clickedCellsIds: string[];
+}
+
+export interface StatusData {
+    shipPositions: BoardPoint[];
+    clickedCellsIds: string[];
+}
+
+export interface MultiplayerData {
     uid: string;
-    savedGames: SavedGameData[];
-    playedGames: PlayedGameData[];
     multiplayerCode: string;
 }
 

@@ -11,29 +11,56 @@ export class MultiplayerComponent implements OnInit {
   codeGenerated = false;
   roomCode = '';
   isInputDisabled = false;
-  joinButtonVisible = false;
-  joinButtonDisabled = false;
+  isGenerateCodeDisabled = false;
+  isJoinButtonDisabled = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onInputKeypress(inputValue: string): void {
+  private joinRoom(): void {
+    this.isJoinButtonDisabled = true;
+    const joinButton = document.getElementById('enter-room-button');
+    joinButton.style.visibility = 'visible';
+    joinButton.style.width = 'auto';
+    if (this.codeGenerated) {
+      joinButton.textContent = 'Waiting the enemy to join...';
+      // Server listens for data base insertions in multiplayer.
+      // If some insertion with the same this.roomCode arrises, navigate to game board and delete user's code.
+    } else {
+      joinButton.textContent = 'Checking if the enemy has joined...';
+      // Server adds this.roomCode for this user and checks if there is any user
+      // with the same room code. If so, navigate to game board and delete user's code.
+    }
+    setTimeout(() => {
+      this.router.navigate(['game-board/Multiplayer/12345']);
+    }, 5000);
+  }
+
+  onInputKeyup(inputValue: string): void {
+    this.isGenerateCodeDisabled = true;
     const input = document.getElementsByClassName('form-control-lg');
     if (inputValue.length === 8) {
       input.item(0).classList.remove('is-invalid');
       input.item(0).classList.add('is-valid');
-      this.joinButtonVisible = true;
+      const joinButton = document.getElementById('enter-room-button');
+      joinButton.style.visibility = 'visible';
+      this.isJoinButtonDisabled = false;
     } else {
       input.item(0).classList.add('is-invalid');
+      this.isJoinButtonDisabled = true;
     }
   }
 
   onGenerateCodeClicked(): void {
     this.roomCode = uuidv4().slice(0, 8).toUpperCase();
+    this.isInputDisabled = true;
     this.codeGenerated = true;
-    this.joinButtonVisible = true;
+    const joinButton = document.getElementById('enter-room-button');
+    joinButton.style.visibility = 'visible';
+    // Server adds a code for this user
+    this.joinRoom();
   }
 
   onCopyClicked(): void {
@@ -43,12 +70,6 @@ export class MultiplayerComponent implements OnInit {
   }
 
   onJoinRoomClicked(): void {
-    this.joinButtonDisabled = true;
-    const joinButton = document.getElementById('enter-room-button');
-    joinButton.textContent = 'Waiting the enemy to join...';
-    joinButton.style.width = 'auto';
-    setTimeout(() => {
-      this.router.navigate(['game-board/Multiplayer/12345']);
-    }, 5000);
+    this.joinRoom();
   }
 }

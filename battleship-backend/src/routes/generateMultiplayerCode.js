@@ -6,7 +6,8 @@ export const generateMultiplayerCode = {
     // eslint-disable-next-line
     handler: async (req, h) => {
         const uid = req.params.uid;
-        const payload = JSON.parse(req.payload);
+        let payload;
+        typeof req.payload === 'string' ? payload = JSON.parse(req.payload) : payload = req.payload;
         const { code } = payload;
         await db.query(`
             INSERT INTO multiplayer (uid, mpcode)

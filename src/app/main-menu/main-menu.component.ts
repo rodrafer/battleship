@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserData, MenuOptions } from '../constants/interfaces';
-import { FAKE_DATA, MENU_OPTIONS } from '../constants/constants';
+import { MenuOptions } from '../constants/interfaces';
+import { MENU_OPTIONS } from '../constants/constants';
 
 @Component({
   selector: 'app-main-menu',
@@ -9,14 +9,13 @@ import { FAKE_DATA, MENU_OPTIONS } from '../constants/constants';
 })
 export class MainMenuComponent implements OnInit {
   menuTitle = 'battleship';
-  user: UserData;
+  uid: string;
   options: MenuOptions[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.user = FAKE_DATA[0];
+    this.uid = '12345';
     this.options = MENU_OPTIONS;
   }
-
 }

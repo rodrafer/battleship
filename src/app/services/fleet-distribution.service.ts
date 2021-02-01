@@ -38,7 +38,6 @@ export class FleetDistributionService {
     }
 
     const firstPoint = {x: firstRow, y: firstColumn};
-    console.log(firstPoint);
     return firstPoint;
   }
 
@@ -83,7 +82,6 @@ export class FleetDistributionService {
     const oneToLastGap = ship.length - 2;
 
     if (isSafe) {
-      console.log('isSafe: ' + isSafe);
       random = Math.random();
       if (0 <= random && random < 0.25) {
         orientation = this.possibleOrientations[0];
@@ -95,11 +93,9 @@ export class FleetDistributionService {
         orientation = this.possibleOrientations[3];
       }
     } else {
-      console.log('isSafe: ' + isSafe);
       switch (ship.length) {
         case 4:
         case 2:
-          // Ojo
           this.pointsToCheck = [];
           this.pushPointsToCheck('y', shipFirstPoint, lastGap, 'top', -1);
           this.pushPointsToCheck('x', shipFirstPoint, lastGap, 'right', 1);
@@ -107,7 +103,6 @@ export class FleetDistributionService {
           this.pushPointsToCheck('x', shipFirstPoint, lastGap, 'left', -1);
           break;
         case 3:
-          // Ojo
           this.pointsToCheck = [];
           this.pushPointsToCheck('y', shipFirstPoint, lastGap, 'top', -1);
           this.pushPointsToCheck('y', shipFirstPoint, oneToLastGap, 'top', -1);
@@ -126,16 +121,14 @@ export class FleetDistributionService {
       }
 
       if (this.pointsToCheck.length !== 0) {
-        console.log(this.pointsToCheck);
         this.pointsToCheck.forEach(point => {
           if ((!this.rows.includes(point[0].x) ||
               !this.columns.includes(point[0].y) ||
               this.forbiddenPoints.some(fPoint => this.isEqual(fPoint, point[0]))) &&
               !restrictedOrientations.includes(point[1])) {
             restrictedOrientations.push(point[1]);
-            console.log(restrictedOrientations);
           } else {
-            console.log('no entró');
+            // Log something to the console
           }
         });
 
@@ -181,7 +174,7 @@ export class FleetDistributionService {
         }
       }
     }
-    console.log(orientation);
+
     return orientation;
   }
 
@@ -231,7 +224,6 @@ export class FleetDistributionService {
     let shipPosition: BoardPoint[];
     let firstPoint: BoardPoint = this.getFirstPoint();
     while (this.forbiddenPoints.length !== 0 && this.forbiddenPoints.some(fPoint => this.isEqual(fPoint, firstPoint))) {
-      console.log(this.forbiddenPoints);
       firstPoint = this.getFirstPoint();
     }
     const ship = shipType;
@@ -256,8 +248,6 @@ export class FleetDistributionService {
   }
 
   public resetForbiddenPoints(): void {
-    console.log(this.forbiddenPoints);
     this.forbiddenPoints = [];
-    console.log(this.forbiddenPoints);
   }
 }

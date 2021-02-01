@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FAKE_DATA } from '../constants/constants';
-import { UserData } from '../constants/interfaces';
-
+import { PlayedGameData, SavedGameData } from '../constants/interfaces';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-played-games',
@@ -10,31 +9,56 @@ import { UserData } from '../constants/interfaces';
   styleUrls: ['./played-games.component.scss']
 })
 export class PlayedGamesComponent implements OnInit {
-  gamesToDisplay: any;
+  uid: string;
   typeOfGame: string;
-  userData: UserData;
+  gamesToDisplay: any;
+  savedGames: SavedGameData;
+  playedGames: PlayedGameData;
   gameDifficulty: string;
+  gameId: string;
   isLoadDisabled = true;
   isLoading = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private httpService: HttpService
+  ) { }
 
   ngOnInit(): void {
     const game = this.route.snapshot.paramMap.get('game');
     const uid = this.route.snapshot.paramMap.get('uid');
     this.typeOfGame = game;
-    [this.userData] = FAKE_DATA.filter(data => data.uid === uid);
-    const {playedGames, savedGames} = this.userData;
+    this.uid = uid;
     if (this.typeOfGame === 'played') {
-      this.gamesToDisplay = playedGames;
+      // Server brings user played games
+      this.httpService.getUserPlayedGames(uid)
+        .subscribe(playedGames => this.gamesToDisplay = playedGames);
     } else if (this.typeOfGame === 'saved') {
-      this.gamesToDisplay = savedGames;
+      // Server brings user saved games
+      this.httpService.getUserSavedGames(uid)
+        .subscribe(savedGames => this.gamesToDisplay = savedGames);
     }
   }
 
-  onOptionClicked(difficulty: string): void {
+  onOptionClicked(difficulty: string, gid: string): void {
     this.gameDifficulty = difficulty;
+    this.gameId = gid;
     this.isLoadDisabled = false;
   }
 
+  // Get selected game status from the server, communicate game board component
+  // that Load Game was clicked and send it the selected game status.
+  // THIS IS DONE THROUG DATA ROUTER LINK PARAMETER IN TEMPLATE
+
+  onDeleteClicked(gid): void {
+    if (this.typeOfGame === 'played') {
+      // Server brings user played games
+      this.httpService.deleteSavedGame(this.uid, gid)
+        .subscribe(() => 'Game deleted!');
+    } else if (this.typeOfGame === 'saved') {
+      // Server brings user saved games
+      this.httpService.deletePlayedGame(this.uid, gid)
+        .subscribe(() => 'Game deleted!');
+    }
+  }
 }
